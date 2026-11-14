@@ -3,7 +3,7 @@ package model;
 
 public class Animal {
     private int idAnimal;
-    private String nome;
+    private String nomeAnimal;
     private String especie;
     private String raca;
     private int idadeAproximada;
@@ -13,7 +13,7 @@ public class Animal {
 
     public Animal(int idAnimal, String nome, String especie, String raca, int idadeAproximada, String sexo, String porte) {
         this.idAnimal = idAnimal;
-        this.nome = nome;
+        this.nomeAnimal = nomeAnimal;
         this.especie = especie;
         this.raca = raca;
         this.idadeAproximada = idadeAproximada;
@@ -29,12 +29,12 @@ public class Animal {
         this.idAnimal = idAnimal;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeAnimal() {
+        return nomeAnimal;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeAnimal(String nomeAnimal) {
+        this.nomeAnimal = nomeAnimal;
     }
 
     public String getEspecie() {
