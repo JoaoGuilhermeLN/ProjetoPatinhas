@@ -56,7 +56,7 @@ create table Adocao(
   dataAdocao date NOT NULL,
 
   foreign key(idAnimal) references Animal(idAnimal),
-  foreign key(idCliente) references Cliente(idCliente)
+  foreign key(idCliente) references Cliente(idPessoa)
 );
 
 -- Animais disponíveis
@@ -106,7 +106,7 @@ order by cargo;
 select count(*) as quantidadeGeral
 from Adocao;
 
---Relaçâo entre clientes e animais
+--Relação entre clientes e animais
 select 
 a.nome as animal,
 p.nome as cliente,
