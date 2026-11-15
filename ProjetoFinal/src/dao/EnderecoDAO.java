@@ -72,4 +72,35 @@ public class EnderecoDAO {
 
     }
     
+    public Endereco consultarEnderecoPorId(int idEndereco){
+        Endereco endereco = null;
+        try{
+        String sql = "SELECT * FROM Endereco WHERE idEndereco = ?";
+
+            PreparedStatement ps = conexao.prepareStatement(sql);
+
+            ps.setInt(1, idEndereco);
+
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+
+            endereco = new Endereco(
+                rs.getInt("idEndereco"),
+                rs.getString("rua"),
+                rs.getString("numero"),
+                rs.getString("bairro"),
+                rs.getString("cidade"),
+                rs.getString("estado"),
+                rs.getString("cep")
+            );
+        }
+
+    } catch (SQLException erro) {
+        System.out.println("Erro ao consultar endereço: " + erro.getMessage());
+    }
+
+    return endereco;
+    }
+    
 }
