@@ -39,5 +39,37 @@ public class EnderecoDAO {
         }
         
     }
+    //listar todos os enderecos
+    public ArrayList<Endereco> consultarTodosEnderecos(){
+        
+        ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
+        
+        try {
+            String sql = "SELECT * FROM Endereco";
+            PreparedStatement ps = conexao.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()){
+                Endereco e = new Endereco(
+                rs.getInt("idEndereco"),
+                rs.getString("rua"),
+                rs.getString("numero"),
+                rs.getString("bairro"),
+                rs.getString("cidade"),
+                rs.getString("estado"),
+                rs.getString("cep")
+            );
+                
+                enderecos.add(e);
+                
+            }
+        } catch (SQLException erro) {
+        System.out.println("Erro ao consultar endereços: " + erro.getMessage());
+    }
+
+    return enderecos;
+
+    }
     
 }
