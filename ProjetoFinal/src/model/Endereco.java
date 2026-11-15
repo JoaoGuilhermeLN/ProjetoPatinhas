@@ -1,22 +1,47 @@
 
 package model;
 
-
 public class Endereco {
+
+    private int idEndereco;
     private String rua;
-    private int numero;
+    private String numero;
     private String bairro;
     private String cidade;
     private String estado;
     private String cep;
 
-    public Endereco(String rua, int numero, String bairro, String cidade, String estado, String cep) {
+    // Construtor que cadastra um novo endereço
+    public Endereco(String rua, String numero, String bairro,
+                    String cidade, String estado, String cep) {
+
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
         this.cep = cep;
+    }
+
+    // Construtor que serve p recuperar um endereço do banco
+    public Endereco(int idEndereco, String rua, String numero,
+                    String bairro, String cidade, String estado, String cep) {
+
+        this.idEndereco = idEndereco;
+        this.rua = rua;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.cep = cep;
+    }
+
+    public int getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     public String getRua() {
@@ -27,11 +52,11 @@ public class Endereco {
         this.rua = rua;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
@@ -66,5 +91,4 @@ public class Endereco {
     public void setCep(String cep) {
         this.cep = cep;
     }
-    
 }
