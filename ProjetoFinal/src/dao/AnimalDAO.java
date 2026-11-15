@@ -21,7 +21,7 @@ public class AnimalDAO {
             String sql = "insert into animal (nome, especie, raca, idadeAproximada, sexo, porte, status) values (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = conexao.prepareStatement(sql);
 
-            ps.setString(1, a.getNome());
+            ps.setString(1, a.getNomeAnimal());
             ps.setString(2, a.getEspecie());
             ps.setString(3, a.getRaca());
             ps.setInt(4, a.getIdadeAproximada());
@@ -36,7 +36,7 @@ public class AnimalDAO {
             System.out.println("Erro na insercao: " + e);
         }
     }
-    
+
     // listar todos os animais
     public ArrayList<Animal> consultarTodos() {
 
@@ -75,7 +75,7 @@ public class AnimalDAO {
 
         return animais;
     }
-    
+
     // procurar animal pelo id
     public Animal consultarPorId(int idAnimal) {
 
@@ -116,7 +116,7 @@ public class AnimalDAO {
         return animal;
 
     }
-    
+
     // atualizar algum dado
     public void atualizar(Animal a) {
 
@@ -124,7 +124,7 @@ public class AnimalDAO {
             String sql = "UPDATE animal SET nome = ?, especie = ?, raca = ?, idadeAproximada = ?, sexo = ?, porte = ? WHERE idAnimal = ?";
             PreparedStatement ps = conexao.prepareStatement(sql);
 
-            ps.setString(1, a.getNome());
+            ps.setString(1, a.getNomeAnimal());
             ps.setString(2, a.getEspecie());
             ps.setString(3, a.getRaca());
             ps.setInt(4, a.getIdadeAproximada());
@@ -183,8 +183,51 @@ public class AnimalDAO {
 
         return animais;
     }
+
     
-    public void remover(int idAnimal){
-        //falta implementar esse mas preciso da tabela solicitações no mysql
+public void remover(int idAnimal) {
+
+    String verificar = "SELECT COUNT(*) FROM Adocao WHERE idAnimal = ?";
+    String remover = "DELETE FROM Animal WHERE idAnimal = ?";
+
+    try {
+
+        // Verifica se o animal possui adoção registrada
+        try (PreparedStatement ps = conexao.prepareStatement(verificar)) {
+
+            ps.setInt(1, idAnimal);
+
+            try (ResultSet rs = ps.executeQuery()) {
+
+                if (rs.next() && rs.getInt(1) > 0) {
+                    JOptionPane.showMessageDialog(null,
+                            "Não é possível remover um animal com adoção registrada!");
+                    return;
+                }
+            }
+        }
+
+        // Remove o animal
+        try (PreparedStatement ps = conexao.prepareStatement(remover)) {
+
+            ps.setInt(1, idAnimal);
+
+            int linhas = ps.executeUpdate();
+
+            if (linhas > 0) {
+                JOptionPane.showMessageDialog(null,
+                        "Animal removido com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Animal não encontrado!");
+            }
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null,
+                "Erro ao remover animal: " + e.getMessage());
     }
+}
+
+
 }

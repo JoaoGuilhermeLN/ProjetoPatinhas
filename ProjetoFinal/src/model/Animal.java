@@ -1,7 +1,8 @@
+
 package model;
 
-
 public class Animal {
+
     private int idAnimal;
     private String nomeAnimal;
     private String especie;
@@ -11,7 +12,9 @@ public class Animal {
     private String porte;
     private String status = "Disponivel";
 
-    public Animal(int idAnimal, String nome, String especie, String raca, int idadeAproximada, String sexo, String porte) {
+    public Animal(int idAnimal, String nomeAnimal, String especie,
+                  String raca, int idadeAproximada, String sexo, String porte) {
+
         this.idAnimal = idAnimal;
         this.nomeAnimal = nomeAnimal;
         this.especie = especie;
@@ -84,6 +87,4 @@ public class Animal {
     public void setStatus(String status) {
         this.status = status;
     }
-    
-    
 }
