@@ -14,30 +14,47 @@ public class EnderecoDAO {
     public EnderecoDAO() {
         conexao = new Conexao().getConexao();
     }
+    
+     public EnderecoDAO(Connection conexao) {
+        this.conexao = conexao;
+    }
 
     //inserir os dados do endereco no mysql
-    public void inserirEndereco(Endereco e) {
-        try {
-            String sql = "insert into Endereco (rua, numero, bairro, cidade, estado, cep) values (?, ?, ?, ?, ?, ?) ";
-            PreparedStatement ps = conexao.prepareStatement(sql);
+    
+public int inserirEndereco(Endereco endereco) {
 
-            ps.setString(1, e.getRua());
-            ps.setString(2, e.getNumero());
-            ps.setString(3, e.getBairro());
-            ps.setString(4, e.getCidade());
-            ps.setString(5, e.getEstado());
-            ps.setString(6, e.getCep());
+    String sql = "INSERT INTO Endereco (rua, numero, bairro, cidade, estado, cep) VALUES (?, ?, ?, ?, ?, ?)";
 
-            ps.executeUpdate();
+    try (PreparedStatement ps = conexao.prepareStatement(
+            sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            JOptionPane.showMessageDialog(null, "Cadastro de endereco realizado");
+        ps.setString(1, endereco.getRua());
+        ps.setString(2, endereco.getNumero());
+        ps.setString(3, endereco.getBairro());
+        ps.setString(4, endereco.getCidade());
+        ps.setString(5, endereco.getEstado());
+        ps.setString(6, endereco.getCep());
 
-        } catch (SQLException erro) {
-            System.out.println("Erro ao cadastrar endereço: " + erro.getMessage());
+        int linhas = ps.executeUpdate();
 
+        if (linhas > 0) {
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                if (rs.next()) {
+                    int idGerado = rs.getInt(1);
+                    endereco.setIdEndereco(idGerado);
+                    return idGerado;
+                }
+            }
         }
 
+    } catch (SQLException erro) {
+        System.out.println("Erro ao cadastrar endereço: "
+                + erro.getMessage());
     }
+
+    return -1;
+}
+
 
     //listar todos os enderecos
     public ArrayList<Endereco> consultarTodosEnderecos() {

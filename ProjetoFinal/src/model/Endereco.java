@@ -10,6 +10,10 @@ public class Endereco {
     private String cidade;
     private String estado;
     private String cep;
+    
+    public Endereco(){
+        
+    }// teste aq de inserir cliente
 
     // Construtor que cadastra um novo endereço
     public Endereco(String rua, String numero, String bairro,
