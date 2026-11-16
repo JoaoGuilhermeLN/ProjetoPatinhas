@@ -33,7 +33,7 @@ public class TesteClienteDAO {
         System.out.print("Tipo de moradia: ");
         String tipoMoradia = ler.nextLine();
 
-// DADOS DO ENDEREÇO
+        // DADOS DO ENDEREÇO
         System.out.println("\n=== ENDEREÇO ===");
 
         System.out.print("Rua: ");
