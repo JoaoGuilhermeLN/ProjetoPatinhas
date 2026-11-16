@@ -38,8 +38,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         canvas1 = new java.awt.Canvas();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        botaoEntrar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
 
@@ -79,18 +78,12 @@ public class menuPrincipal extends javax.swing.JFrame {
         jPanel1.add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1013, 272, -1, -1));
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 160, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(134, 105, 189));
-        jButton1.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Cadastrar");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 90, 130, 50));
-
-        jButton2.setBackground(new java.awt.Color(134, 105, 189));
-        jButton2.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Entrar");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 90, 120, 50));
+        botaoEntrar.setBackground(new java.awt.Color(134, 105, 189));
+        botaoEntrar.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        botaoEntrar.setForeground(new java.awt.Color(255, 255, 255));
+        botaoEntrar.setText("Entrar");
+        botaoEntrar.addActionListener(this::botaoEntrarActionPerformed);
+        jPanel1.add(botaoEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1360, 90, 120, 50));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 1520, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/Patinhas tela menu.png"))); // NOI18N
@@ -114,9 +107,9 @@ public class menuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botaoEntrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,9 +137,8 @@ public class menuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoEntrar;
     private java.awt.Canvas canvas1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
