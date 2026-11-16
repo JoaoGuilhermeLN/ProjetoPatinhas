@@ -64,17 +64,17 @@ select *
 from animal
 where status = 'Disponível';
 
---Quantidade de animais disponíveis
+-- Quantidade de animais disponíveis
 select status, count(*) as quantidade
 from Animal 
 group by status;
 
---Quantidade de animais disponíveis por espécie
+-- Quantidade de animais disponíveis por espécie
 select especie, count(*) as quantidade
 from Animal 
 group by especie;
 
---Clientes e seu endereço
+-- Clientes e seu endereço
 select
 p.nome,
 p.cpf,
@@ -92,7 +92,7 @@ inner join Cliente c
 inner join Endereco e 
   on p.idEndereco = e.idEndereco;
 
---Funcionários por cargo
+-- Funcionários por cargo
 select
 p.nome,
 f.matricula,
@@ -102,11 +102,11 @@ inner join Funcionario f
   on p.idPessoa = f.idPessoa
 order by cargo;
 
---Quantidade geral de adoções realizadas
+-- Quantidade geral de adoções realizadas
 select count(*) as quantidadeGeral
 from Adocao;
 
---Relação entre clientes e animais
+-- Relação entre clientes e animais
 select 
 a.nome as animal,
 p.nome as cliente,
