@@ -10,7 +10,7 @@ public class Conexao {
     String user;
     String password;
 
-    String database = "projetoPatinhas";
+    String database = "Patinhas";
     String url = "jdbc:mysql://localhost:3306/" + database;
 
     public Conexao() {
