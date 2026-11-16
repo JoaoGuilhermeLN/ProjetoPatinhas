@@ -1,5 +1,5 @@
-create database projetoPatinhas;
-use projetoPatinhas;
+create database patinhas;
+use patinhas;
 
 create table Animal(
 	idAnimal int AUTO_INCREMENT PRIMARY KEY,
