@@ -29,16 +29,150 @@ public class TelaCadastro extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        nome = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        cpf = new javax.swing.JTextField();
+        telefone = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
+        rua = new javax.swing.JTextField();
+        numero = new javax.swing.JTextField();
+        bairro = new javax.swing.JTextField();
+        cidade = new javax.swing.JTextField();
+        jTextField9 = new javax.swing.JTextField();
+        cep = new javax.swing.JTextField();
+        cargo = new javax.swing.JTextField();
+        matricula = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1519, 803));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/Patinhas tela.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Artifakt Element Black", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Nome");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, -1, -1));
+
+        nome.addActionListener(this::nomeActionPerformed);
+        getContentPane().add(nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, 560, -1));
+
+        jLabel3.setFont(new java.awt.Font("Artifakt Element Black", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Nome");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Artifakt Element Black", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Nome");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Artifakt Element Black", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("CPF");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 350, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Artifakt Element Black", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Telefone");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Artifakt Element Black", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Email");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 410, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Artifakt Element Black", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Rua");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 440, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Artifakt Element Black", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Número da casa");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 470, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Artifakt Element Black", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Bairro");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 500, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Artifakt Element Black", 0, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Cidade");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 530, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Artifakt Element Black", 0, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("CEP");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 560, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Artifakt Element Black", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Cargo");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 590, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Artifakt Element Black", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Matrícula");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 620, -1, -1));
+
+        cpf.addActionListener(this::cpfActionPerformed);
+        getContentPane().add(cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 350, 560, -1));
+
+        telefone.addActionListener(this::telefoneActionPerformed);
+        getContentPane().add(telefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 380, 530, -1));
+        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 410, 560, -1));
+        getContentPane().add(rua, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 440, 560, -1));
+        getContentPane().add(numero, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 470, -1));
+        getContentPane().add(bairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 500, 550, -1));
+        getContentPane().add(cidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 530, 550, -1));
+
+        jTextField9.setText("jTextField9");
+        getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 530, 550, -1));
+
+        cep.addActionListener(this::cepActionPerformed);
+        getContentPane().add(cep, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 560, 570, -1));
+        getContentPane().add(cargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 590, 550, -1));
+
+        matricula.addActionListener(this::matriculaActionPerformed);
+        getContentPane().add(matricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 620, 520, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/Patinhas tela cadastro funcionario.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeActionPerformed
+
+    private void cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cpfActionPerformed
+
+    private void telefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_telefoneActionPerformed
+
+    private void cepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cepActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cepActionPerformed
+
+    private void matriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matriculaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_matriculaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -66,6 +200,31 @@ public class TelaCadastro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField bairro;
+    private javax.swing.JTextField cargo;
+    private javax.swing.JTextField cep;
+    private javax.swing.JTextField cidade;
+    private javax.swing.JTextField cpf;
+    private javax.swing.JTextField email;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField matricula;
+    private javax.swing.JTextField nome;
+    private javax.swing.JTextField numero;
+    private javax.swing.JTextField rua;
+    private javax.swing.JTextField telefone;
     // End of variables declaration//GEN-END:variables
 }
