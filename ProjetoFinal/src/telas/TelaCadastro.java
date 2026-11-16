@@ -53,6 +53,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         cep = new javax.swing.JTextField();
         cargo = new javax.swing.JTextField();
         matricula = new javax.swing.JTextField();
+        concluirCadastro = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -148,7 +149,14 @@ public class TelaCadastro extends javax.swing.JFrame {
         matricula.addActionListener(this::matriculaActionPerformed);
         getContentPane().add(matricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 620, 520, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/Patinhas tela cadastro funcionario.png"))); // NOI18N
+        concluirCadastro.setBackground(new java.awt.Color(134, 105, 189));
+        concluirCadastro.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        concluirCadastro.setForeground(new java.awt.Color(255, 255, 255));
+        concluirCadastro.setText("Concluir");
+        concluirCadastro.addActionListener(this::concluirCadastroActionPerformed);
+        getContentPane().add(concluirCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 700, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/Patinhas.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -173,6 +181,10 @@ public class TelaCadastro extends javax.swing.JFrame {
     private void matriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matriculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_matriculaActionPerformed
+
+    private void concluirCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_concluirCadastroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_concluirCadastroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,6 +216,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JTextField cargo;
     private javax.swing.JTextField cep;
     private javax.swing.JTextField cidade;
+    private javax.swing.JButton concluirCadastro;
     private javax.swing.JTextField cpf;
     private javax.swing.JTextField email;
     private javax.swing.JLabel jLabel1;

@@ -40,6 +40,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         botaoEntrar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         jRadioButtonMenuItem1.setSelected(true);
@@ -85,6 +86,12 @@ public class menuPrincipal extends javax.swing.JFrame {
         botaoEntrar.addActionListener(this::botaoEntrarActionPerformed);
         jPanel1.add(botaoEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1360, 90, 120, 50));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 1520, -1));
+
+        jButton1.setBackground(new java.awt.Color(134, 105, 189));
+        jButton1.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Ver Animais");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 630, 280, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/Patinhas tela menu.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -139,6 +146,7 @@ public class menuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoEntrar;
     private java.awt.Canvas canvas1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
