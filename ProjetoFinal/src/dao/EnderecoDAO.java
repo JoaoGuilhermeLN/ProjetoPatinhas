@@ -132,5 +132,51 @@ public class EnderecoDAO {
                     "Erro na atualização: " + erro.getMessage());
         }
     }
+    
+    
+public void removerEndereco(int idEndereco) {
+
+    String verificar = "SELECT COUNT(*) FROM Pessoa WHERE idEndereco = ?";
+    String remover = "DELETE FROM Endereco WHERE idEndereco = ?";
+
+    try {
+        
+        // Verifica se o endereço está vinculado a alguma pessoa
+        try (PreparedStatement ps = conexao.prepareStatement(verificar)) {
+
+            ps.setInt(1, idEndereco);
+
+            try (ResultSet rs = ps.executeQuery()) {
+
+                if (rs.next() && rs.getInt(1) > 0) {
+                    JOptionPane.showMessageDialog(null,
+                            "Não é possível remover um endereço vinculado a uma pessoa!");
+                    return;
+                }
+            }
+        }
+
+        // Remove o endereço
+        try (PreparedStatement ps = conexao.prepareStatement(remover)) {
+
+            ps.setInt(1, idEndereco);
+
+            int linhas = ps.executeUpdate();
+
+            if (linhas > 0) {
+                JOptionPane.showMessageDialog(null,
+                        "Endereço removido com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Endereço não encontrado!");
+            }
+        }
+
+    } catch (SQLException erro) {
+        JOptionPane.showMessageDialog(null,
+                "Erro ao remover endereço: " + erro.getMessage());
+    }
+}
+
 }
 
