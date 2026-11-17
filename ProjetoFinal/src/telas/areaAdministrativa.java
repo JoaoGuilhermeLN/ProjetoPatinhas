@@ -29,6 +29,12 @@ public class areaAdministrativa extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -40,12 +46,62 @@ public class areaAdministrativa extends javax.swing.JFrame {
         jButton1.setText("Sair");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 130, -1, -1));
 
+        jButton2.setBackground(new java.awt.Color(134, 105, 189));
+        jButton2.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Animais disponíveis");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 360, 50));
+
+        jButton3.setBackground(new java.awt.Color(134, 105, 189));
+        jButton3.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Quantidade de animais por status");
+        jButton3.addActionListener(this::jButton3ActionPerformed);
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 360, 50));
+
+        jButton4.setBackground(new java.awt.Color(134, 105, 189));
+        jButton4.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Animais por espécie");
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 360, 50));
+
+        jButton5.setBackground(new java.awt.Color(134, 105, 189));
+        jButton5.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Clientes e seus endereços");
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, 360, 50));
+
+        jButton6.setBackground(new java.awt.Color(134, 105, 189));
+        jButton6.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(242, 242, 242));
+        jButton6.setText("Funcionários por cargo");
+        jButton6.addActionListener(this::jButton6ActionPerformed);
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 360, 50));
+
+        jButton7.setBackground(new java.awt.Color(134, 105, 189));
+        jButton7.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(242, 242, 242));
+        jButton7.setText("Relação entre clientes e animais ");
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 360, 50));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/Patinhas area adm(1).png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1520, 810));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -74,6 +130,12 @@ public class areaAdministrativa extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
