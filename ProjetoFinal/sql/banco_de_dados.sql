@@ -59,6 +59,17 @@ create table Adocao(
   foreign key(idCliente) references Cliente(idPessoa)
 );
 
+CREATE TABLE IF NOT EXISTS Solicitacao (
+    idSolicitacao INT AUTO_INCREMENT PRIMARY KEY,
+    idCliente INT NOT NULL,
+    idAnimal INT NOT NULL,
+    dataSolicitacao DATE NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'Pendente',
+
+    FOREIGN KEY (idCliente) REFERENCES Cliente(idPessoa),
+    FOREIGN KEY (idAnimal) REFERENCES Animal(idAnimal)
+);
+
 -- Animais disponíveis
 select *
 from animal
