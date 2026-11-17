@@ -146,6 +146,33 @@ public class AnimalDAO {
                     "Erro na atualização: " + e.getMessage());
         }
     }
+    
+    
+public void atualizarStatus(int idAnimal, String status) {
+
+    String sql = "UPDATE Animal SET status = ? WHERE idAnimal = ?";
+
+    try (PreparedStatement ps = conexao.prepareStatement(sql)) {
+
+        ps.setString(1, status);
+        ps.setInt(2, idAnimal);
+
+        int linhas = ps.executeUpdate();
+
+        if (linhas > 0) {
+            JOptionPane.showMessageDialog(null,
+                    "Status atualizado com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Animal não encontrado!");
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null,
+                "Erro ao atualizar status: " + e.getMessage());
+    }
+}
+
 
     public ArrayList<Animal> consultarDisponiveis() {
 

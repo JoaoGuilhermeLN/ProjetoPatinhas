@@ -132,4 +132,53 @@ public class ClienteDAO {
 
         return clientes;
     }
+
+    public Cliente buscarClientePorCpf(String cpf) {
+
+        Cliente cliente = null;
+
+        String sql = "SELECT p.*, c.dataNascimento, c.tipoMoradia, "
+                + "e.rua, e.numero, e.bairro, e.cidade, e.estado, e.cep "
+                + "FROM Cliente c "
+                + "INNER JOIN Pessoa p ON c.idPessoa = p.idPessoa "
+                + "INNER JOIN Endereco e ON p.idEndereco = e.idEndereco "
+                + "WHERE p.cpf = ?";
+
+        try (PreparedStatement ps = conexao.prepareStatement(sql)) {
+
+            ps.setString(1, cpf);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                Endereco endereco = new Endereco(
+                        rs.getInt("idEndereco"),
+                        rs.getString("rua"),
+                        rs.getString("numero"),
+                        rs.getString("bairro"),
+                        rs.getString("cidade"),
+                        rs.getString("estado"),
+                        rs.getString("cep")
+                );
+
+                cliente = new Cliente(
+                        rs.getString("dataNascimento"),
+                        rs.getString("tipoMoradia"),
+                        rs.getInt("idPessoa"),
+                        rs.getString("nome"),
+                        rs.getString("cpf"),
+                        rs.getString("telefone"),
+                        rs.getString("email"),
+                        endereco
+                );
+            }
+
+        } catch (SQLException erro) {
+            System.out.println("Erro ao buscar cliente: " + erro.getMessage());
+        }
+
+        return cliente;
+    }
+
 }
