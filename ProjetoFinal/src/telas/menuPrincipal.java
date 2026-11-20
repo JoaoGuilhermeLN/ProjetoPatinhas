@@ -91,6 +91,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         botaoVerAnimais.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
         botaoVerAnimais.setForeground(new java.awt.Color(255, 255, 255));
         botaoVerAnimais.setText("Ver Animais");
+        botaoVerAnimais.addActionListener(this::botaoVerAnimaisActionPerformed);
         jPanel1.add(botaoVerAnimais, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 630, 280, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/Patinhas tela menu.png"))); // NOI18N
@@ -101,18 +102,26 @@ public class menuPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 3, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 3, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 811, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 4, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 4, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botaoVerAnimaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVerAnimaisActionPerformed
+        telaAdocao tela = new telaAdocao();
+        tela.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_botaoVerAnimaisActionPerformed
 
     private void botaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarActionPerformed
         // TODO add your handling code here:
