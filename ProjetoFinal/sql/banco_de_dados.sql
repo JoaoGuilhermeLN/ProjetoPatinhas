@@ -9,7 +9,8 @@ create table Animal(
   idadeAproximada int,
   sexo VARCHAR(10) NOT NULL,
   porte VARCHAR(20),
-  status VARCHAR(20) NOT NULL DEFAULT 'Disponivel'
+  status VARCHAR(20) NOT NULL DEFAULT 'Disponivel',
+  foto VARCHAR(255)
 );
 
 create table Endereco(
