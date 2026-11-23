@@ -5,15 +5,15 @@ public class Usuario {
     private int idUsuario;
     private int idPessoa;
     private String login;
-    private String senhaHash;
+    private String senha;
     private String perfil;
 
-    public Usuario(int idUsuario, int idPessoa, String login, String senhaHash, String perfil) {
+    public Usuario(int idUsuario, int idPessoa, String login, String senha, String perfil) {
 
         this.idUsuario = idUsuario;
         this.idPessoa = idPessoa;
         this.login = login;
-        this.senhaHash = senhaHash;
+        this.senha = senha;
         this.perfil = perfil;
     }
 
@@ -41,12 +41,12 @@ public class Usuario {
         this.login = login;
     }
 
-    public String getSenhaHash() {
-        return senhaHash;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setSenhaHash(String senhaHash) {
-        this.senhaHash = senhaHash;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getPerfil() {
