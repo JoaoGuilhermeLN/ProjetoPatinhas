@@ -35,6 +35,8 @@ public class areaAdministrativa extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,6 +86,21 @@ public class areaAdministrativa extends javax.swing.JFrame {
         jButton7.setForeground(new java.awt.Color(242, 242, 242));
         jButton7.setText("Relação entre clientes e animais ");
         getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 360, 50));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 457, 730, 290));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/Patinhas area adm(1).png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1520, 810));
@@ -137,5 +154,7 @@ public class areaAdministrativa extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
