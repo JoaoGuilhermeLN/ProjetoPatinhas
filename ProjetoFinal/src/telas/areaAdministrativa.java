@@ -11,7 +11,7 @@ import dao.RelatorioDAO;
  * @author Aluno
  */
 public class areaAdministrativa extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(areaAdministrativa.class.getName());
 
     /**
@@ -75,6 +75,7 @@ public class areaAdministrativa extends javax.swing.JFrame {
         botaoClientesEnd.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
         botaoClientesEnd.setForeground(new java.awt.Color(255, 255, 255));
         botaoClientesEnd.setText("Clientes e seus endereços");
+        botaoClientesEnd.addActionListener(this::botaoClientesEndActionPerformed);
         getContentPane().add(botaoClientesEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, 360, 50));
 
         botaoFunciCargo.setBackground(new java.awt.Color(134, 105, 189));
@@ -115,7 +116,7 @@ public class areaAdministrativa extends javax.swing.JFrame {
     private void botaoAnimaisDisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAnimaisDisActionPerformed
         RelatorioDAO dao = new RelatorioDAO();
         tabelaRelatorios.setModel(dao.consultarAnimais());
-        
+
     }//GEN-LAST:event_botaoAnimaisDisActionPerformed
 
     private void botaoQuantStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoQuantStatusActionPerformed
@@ -124,17 +125,24 @@ public class areaAdministrativa extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoQuantStatusActionPerformed
 
     private void botaoFunciCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFunciCargoActionPerformed
-        // TODO add your handling code here:
+        RelatorioDAO dao = new RelatorioDAO();
+        tabelaRelatorios.setModel(dao.consultarFuncionariosCargo());
     }//GEN-LAST:event_botaoFunciCargoActionPerformed
 
     private void botaoAnimaisEspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAnimaisEspActionPerformed
-         RelatorioDAO dao = new RelatorioDAO();
-         tabelaRelatorios.setModel(dao.consultarAnimaisEspecie());
+        RelatorioDAO dao = new RelatorioDAO();
+        tabelaRelatorios.setModel(dao.consultarAnimaisEspecie());
     }//GEN-LAST:event_botaoAnimaisEspActionPerformed
 
     private void botaoClientesAnimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoClientesAnimActionPerformed
-        // TODO add your handling code here:
+        RelatorioDAO dao = new RelatorioDAO();
+        tabelaRelatorios.setModel(dao.consultarClientesAnimais());
     }//GEN-LAST:event_botaoClientesAnimActionPerformed
+
+    private void botaoClientesEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoClientesEndActionPerformed
+        RelatorioDAO dao = new RelatorioDAO();
+        tabelaRelatorios.setModel(dao.consultarClientesEndereco());
+    }//GEN-LAST:event_botaoClientesEndActionPerformed
 
     /**
      * @param args the command line arguments
