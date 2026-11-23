@@ -81,7 +81,7 @@ public class TelaAdocaoTeste extends javax.swing.JFrame {
         painelAnimais.setLayout(new java.awt.GridLayout(1, 0));
         scrollAnimais.setViewportView(painelAnimais);
 
-        jPanel1.add(scrollAnimais, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 190, 720, 340));
+        jPanel1.add(scrollAnimais, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 190, 1350, 540));
 
         fundoPatinhas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/Patinhas tela.png"))); // NOI18N
         fundoPatinhas.setText("jLabel2");

@@ -41,6 +41,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         botaoEntrar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         botaoVerAnimais = new javax.swing.JButton();
+        botaoCadastrar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         jRadioButtonMenuItem1.setSelected(true);
@@ -94,6 +95,13 @@ public class menuPrincipal extends javax.swing.JFrame {
         botaoVerAnimais.addActionListener(this::botaoVerAnimaisActionPerformed);
         jPanel1.add(botaoVerAnimais, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 630, 280, -1));
 
+        botaoCadastrar.setBackground(new java.awt.Color(134, 105, 189));
+        botaoCadastrar.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        botaoCadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        botaoCadastrar.setText("Cadastrar");
+        botaoCadastrar.addActionListener(this::botaoCadastrarActionPerformed);
+        jPanel1.add(botaoCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1226, 90, 120, 50));
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/Patinhas tela menu.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -102,16 +110,16 @@ public class menuPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 3, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 4, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 4, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -126,6 +134,10 @@ public class menuPrincipal extends javax.swing.JFrame {
     private void botaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoEntrarActionPerformed
+
+    private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoCadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,6 +165,7 @@ public class menuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoCadastrar;
     private javax.swing.JButton botaoEntrar;
     private javax.swing.JButton botaoVerAnimais;
     private java.awt.Canvas canvas1;

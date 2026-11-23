@@ -4,6 +4,8 @@
  */
 package telas;
 
+import dao.RelatorioDAO;
+
 /**
  *
  * @author Aluno
@@ -29,14 +31,14 @@ public class areaAdministrativa extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        botaoAnimaisDis = new javax.swing.JButton();
+        botaoQuantStatus = new javax.swing.JButton();
+        botaoAnimaisEsp = new javax.swing.JButton();
+        botaoClientesEnd = new javax.swing.JButton();
+        botaoFunciCargo = new javax.swing.JButton();
+        botaoClientesAnim = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaRelatorios = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -48,46 +50,46 @@ public class areaAdministrativa extends javax.swing.JFrame {
         jButton1.setText("Sair");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 130, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(134, 105, 189));
-        jButton2.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Animais disponíveis");
-        jButton2.addActionListener(this::jButton2ActionPerformed);
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 360, 50));
+        botaoAnimaisDis.setBackground(new java.awt.Color(134, 105, 189));
+        botaoAnimaisDis.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        botaoAnimaisDis.setForeground(new java.awt.Color(255, 255, 255));
+        botaoAnimaisDis.setText("Animais disponíveis");
+        botaoAnimaisDis.addActionListener(this::botaoAnimaisDisActionPerformed);
+        getContentPane().add(botaoAnimaisDis, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 360, 50));
 
-        jButton3.setBackground(new java.awt.Color(134, 105, 189));
-        jButton3.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Quantidade de animais por status");
-        jButton3.addActionListener(this::jButton3ActionPerformed);
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 360, 50));
+        botaoQuantStatus.setBackground(new java.awt.Color(134, 105, 189));
+        botaoQuantStatus.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        botaoQuantStatus.setForeground(new java.awt.Color(255, 255, 255));
+        botaoQuantStatus.setText("Quantidade de animais por status");
+        botaoQuantStatus.addActionListener(this::botaoQuantStatusActionPerformed);
+        getContentPane().add(botaoQuantStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 360, 50));
 
-        jButton4.setBackground(new java.awt.Color(134, 105, 189));
-        jButton4.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Animais por espécie");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 360, 50));
+        botaoAnimaisEsp.setBackground(new java.awt.Color(134, 105, 189));
+        botaoAnimaisEsp.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        botaoAnimaisEsp.setForeground(new java.awt.Color(255, 255, 255));
+        botaoAnimaisEsp.setText("Animais por espécie");
+        getContentPane().add(botaoAnimaisEsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 360, 50));
 
-        jButton5.setBackground(new java.awt.Color(134, 105, 189));
-        jButton5.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Clientes e seus endereços");
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, 360, 50));
+        botaoClientesEnd.setBackground(new java.awt.Color(134, 105, 189));
+        botaoClientesEnd.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        botaoClientesEnd.setForeground(new java.awt.Color(255, 255, 255));
+        botaoClientesEnd.setText("Clientes e seus endereços");
+        getContentPane().add(botaoClientesEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, 360, 50));
 
-        jButton6.setBackground(new java.awt.Color(134, 105, 189));
-        jButton6.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(242, 242, 242));
-        jButton6.setText("Funcionários por cargo");
-        jButton6.addActionListener(this::jButton6ActionPerformed);
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 360, 50));
+        botaoFunciCargo.setBackground(new java.awt.Color(134, 105, 189));
+        botaoFunciCargo.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        botaoFunciCargo.setForeground(new java.awt.Color(242, 242, 242));
+        botaoFunciCargo.setText("Funcionários por cargo");
+        botaoFunciCargo.addActionListener(this::botaoFunciCargoActionPerformed);
+        getContentPane().add(botaoFunciCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 360, 50));
 
-        jButton7.setBackground(new java.awt.Color(134, 105, 189));
-        jButton7.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(242, 242, 242));
-        jButton7.setText("Relação entre clientes e animais ");
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 360, 50));
+        botaoClientesAnim.setBackground(new java.awt.Color(134, 105, 189));
+        botaoClientesAnim.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        botaoClientesAnim.setForeground(new java.awt.Color(242, 242, 242));
+        botaoClientesAnim.setText("Relação entre clientes e animais ");
+        getContentPane().add(botaoClientesAnim, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 360, 50));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaRelatorios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -98,7 +100,7 @@ public class areaAdministrativa extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelaRelatorios);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 457, 730, 290));
 
@@ -108,17 +110,19 @@ public class areaAdministrativa extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void botaoAnimaisDisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAnimaisDisActionPerformed
+        RelatorioDAO dao = new RelatorioDAO();
+        tabelaRelatorios.setModel(dao.consultarAnimais());
+        
+    }//GEN-LAST:event_botaoAnimaisDisActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void botaoQuantStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoQuantStatusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_botaoQuantStatusActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void botaoFunciCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFunciCargoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_botaoFunciCargoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,15 +150,15 @@ public class areaAdministrativa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoAnimaisDis;
+    private javax.swing.JButton botaoAnimaisEsp;
+    private javax.swing.JButton botaoClientesAnim;
+    private javax.swing.JButton botaoClientesEnd;
+    private javax.swing.JButton botaoFunciCargo;
+    private javax.swing.JButton botaoQuantStatus;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabelaRelatorios;
     // End of variables declaration//GEN-END:variables
 }
