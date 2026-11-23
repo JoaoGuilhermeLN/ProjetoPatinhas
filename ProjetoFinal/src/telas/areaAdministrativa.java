@@ -117,7 +117,8 @@ public class areaAdministrativa extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoAnimaisDisActionPerformed
 
     private void botaoQuantStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoQuantStatusActionPerformed
-        // TODO add your handling code here:
+        RelatorioDAO dao = new RelatorioDAO();
+        tabelaRelatorios.setModel(dao.consultarAnimais());
     }//GEN-LAST:event_botaoQuantStatusActionPerformed
 
     private void botaoFunciCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFunciCargoActionPerformed
