@@ -30,7 +30,7 @@ public class TelaAdocaoTeste extends javax.swing.JFrame {
 
         // Organizar os cartões em três colunas
         painelAnimais.setLayout(
-                new java.awt.GridLayout(0, 3, 15, 15)
+                new java.awt.GridLayout(0, 5, 15, 15)
         );
 
         // Deixar a área transparente
