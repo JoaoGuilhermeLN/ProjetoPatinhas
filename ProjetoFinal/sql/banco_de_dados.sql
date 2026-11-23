@@ -50,6 +50,17 @@ create table Funcionario(
   foreign key(idPessoa) references Pessoa(idPessoa)
 );
 
+CREATE TABLE Usuario (
+    idUsuario INT AUTO_INCREMENT PRIMARY KEY,
+    idPessoa INT NOT NULL UNIQUE,
+    login VARCHAR(100) NOT NULL UNIQUE,
+    senhaHash VARCHAR(255) NOT NULL,
+    perfil ENUM('CLIENTE', 'FUNCIONARIO') NOT NULL,
+
+    FOREIGN KEY (idPessoa)
+        REFERENCES Pessoa(idPessoa)
+);
+
 create table Adocao(
   idAdocao int AUTO_INCREMENT PRIMARY KEY,
   idAnimal int NOT NULL,
