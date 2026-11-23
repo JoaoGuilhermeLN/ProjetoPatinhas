@@ -51,7 +51,6 @@ public class RelatorioDAO {
 
             rs.close();
             stmt.close();
-            conexao.close();
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -64,14 +63,14 @@ public class RelatorioDAO {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-    public DefaultTableModel consultarAnimaisStatus(){
+    public DefaultTableModel consultarAnimaisEspecie(){
         
         DefaultTableModel modelo = new DefaultTableModel();
         
         modelo.addColumn("Especie");
         modelo.addColumn("Quantidade");
         
-        String sql = "SELECT Especie, COUNT (*) AS quantidade"
+        String sql = "SELECT Especie, COUNT(*) AS quantidade "
                 + "FROM Animal GROUP BY especie";
                 
         try {
@@ -92,4 +91,31 @@ public class RelatorioDAO {
         
         return modelo;
     }
+    
+    public DefaultTableModel consultarAnimaisStatus(){
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        modelo.addColumn("Status");
+        modelo.addColumn("Quantidade");
+        
+        String sql = "SELECT Status, COUNT(*) AS quantidade "
+                + "FROM Animal GROUP BY status";
+        
+        try {
+              PreparedStatement stmt = conexao.prepareStatement(sql);
+              ResultSet rs = stmt.executeQuery(); 
+              
+              while(rs.next()){
+                  modelo.addRow(new Object[]{
+                    rs.getString("Status"),
+                    rs.getInt("Quantidade"),
+                });
+              }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return modelo;
+    }
+    
 }

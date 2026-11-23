@@ -68,6 +68,7 @@ public class areaAdministrativa extends javax.swing.JFrame {
         botaoAnimaisEsp.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
         botaoAnimaisEsp.setForeground(new java.awt.Color(255, 255, 255));
         botaoAnimaisEsp.setText("Animais por espécie");
+        botaoAnimaisEsp.addActionListener(this::botaoAnimaisEspActionPerformed);
         getContentPane().add(botaoAnimaisEsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 360, 50));
 
         botaoClientesEnd.setBackground(new java.awt.Color(134, 105, 189));
@@ -87,6 +88,7 @@ public class areaAdministrativa extends javax.swing.JFrame {
         botaoClientesAnim.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
         botaoClientesAnim.setForeground(new java.awt.Color(242, 242, 242));
         botaoClientesAnim.setText("Relação entre clientes e animais ");
+        botaoClientesAnim.addActionListener(this::botaoClientesAnimActionPerformed);
         getContentPane().add(botaoClientesAnim, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 360, 50));
 
         tabelaRelatorios.setModel(new javax.swing.table.DefaultTableModel(
@@ -118,12 +120,21 @@ public class areaAdministrativa extends javax.swing.JFrame {
 
     private void botaoQuantStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoQuantStatusActionPerformed
         RelatorioDAO dao = new RelatorioDAO();
-        tabelaRelatorios.setModel(dao.consultarAnimais());
+        tabelaRelatorios.setModel(dao.consultarAnimaisStatus());
     }//GEN-LAST:event_botaoQuantStatusActionPerformed
 
     private void botaoFunciCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFunciCargoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoFunciCargoActionPerformed
+
+    private void botaoAnimaisEspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAnimaisEspActionPerformed
+         RelatorioDAO dao = new RelatorioDAO();
+         tabelaRelatorios.setModel(dao.consultarAnimaisEspecie());
+    }//GEN-LAST:event_botaoAnimaisEspActionPerformed
+
+    private void botaoClientesAnimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoClientesAnimActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoClientesAnimActionPerformed
 
     /**
      * @param args the command line arguments
