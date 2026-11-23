@@ -11,6 +11,7 @@ public class Animal {
     private String sexo;
     private String porte;
     private String status = "Disponivel";
+    private String foto;
 
     public Animal(int idAnimal, String nomeAnimal, String especie,
                   String raca, int idadeAproximada, String sexo, String porte) {
@@ -87,4 +88,13 @@ public class Animal {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+    
 }
