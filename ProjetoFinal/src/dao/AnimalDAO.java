@@ -146,33 +146,47 @@ public class AnimalDAO {
                     "Erro na atualização: " + e.getMessage());
         }
     }
-    
-    
-public void atualizarStatus(int idAnimal, String status) {
 
-    String sql = "UPDATE Animal SET status = ? WHERE idAnimal = ?";
+    public void atualizarStatus(int idAnimal, String status) {
 
-    try (PreparedStatement ps = conexao.prepareStatement(sql)) {
+        String sql = "UPDATE Animal SET status = ? WHERE idAnimal = ?";
 
-        ps.setString(1, status);
-        ps.setInt(2, idAnimal);
+        try (PreparedStatement ps = conexao.prepareStatement(sql)) {
 
-        int linhas = ps.executeUpdate();
+            ps.setString(1, status);
+            ps.setInt(2, idAnimal);
 
-        if (linhas > 0) {
+            int linhas = ps.executeUpdate();
+
+            if (linhas > 0) {
+                JOptionPane.showMessageDialog(null,
+                        "Status atualizado com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Animal não encontrado!");
+            }
+
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,
-                    "Status atualizado com sucesso!");
-        } else {
-            JOptionPane.showMessageDialog(null,
-                    "Animal não encontrado!");
+                    "Erro ao atualizar status: " + e.getMessage());
         }
-
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null,
-                "Erro ao atualizar status: " + e.getMessage());
     }
-}
 
+//sobrecarga
+    public boolean atualizarStatus(int idAnimal, String status,
+            Connection conexao) throws SQLException {
+
+        String sql = "UPDATE Animal SET status = ? "
+                + "WHERE idAnimal = ? AND status = 'Disponivel'";
+
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setString(1, status);
+            stmt.setInt(2, idAnimal);
+
+            return stmt.executeUpdate() > 0;
+        }
+    }
 
     public ArrayList<Animal> consultarDisponiveis() {
 
@@ -211,50 +225,48 @@ public void atualizarStatus(int idAnimal, String status) {
         return animais;
     }
 
-    
-public void remover(int idAnimal) {
+    public void remover(int idAnimal) {
 
-    String verificar = "SELECT COUNT(*) FROM Adocao WHERE idAnimal = ?";
-    String remover = "DELETE FROM Animal WHERE idAnimal = ?";
+        String verificar = "SELECT COUNT(*) FROM Adocao WHERE idAnimal = ?";
+        String remover = "DELETE FROM Animal WHERE idAnimal = ?";
 
-    try {
+        try {
 
-        // Verifica se o animal possui adoção registrada
-        try (PreparedStatement ps = conexao.prepareStatement(verificar)) {
+            // Verifica se o animal possui adoção registrada
+            try (PreparedStatement ps = conexao.prepareStatement(verificar)) {
 
-            ps.setInt(1, idAnimal);
+                ps.setInt(1, idAnimal);
 
-            try (ResultSet rs = ps.executeQuery()) {
+                try (ResultSet rs = ps.executeQuery()) {
 
-                if (rs.next() && rs.getInt(1) > 0) {
-                    JOptionPane.showMessageDialog(null,
-                            "Não é possível remover um animal com adoção registrada!");
-                    return;
+                    if (rs.next() && rs.getInt(1) > 0) {
+                        JOptionPane.showMessageDialog(null,
+                                "Não é possível remover um animal com adoção registrada!");
+                        return;
+                    }
                 }
             }
-        }
 
-        // Remove o animal
-        try (PreparedStatement ps = conexao.prepareStatement(remover)) {
+            // Remove o animal
+            try (PreparedStatement ps = conexao.prepareStatement(remover)) {
 
-            ps.setInt(1, idAnimal);
+                ps.setInt(1, idAnimal);
 
-            int linhas = ps.executeUpdate();
+                int linhas = ps.executeUpdate();
 
-            if (linhas > 0) {
-                JOptionPane.showMessageDialog(null,
-                        "Animal removido com sucesso!");
-            } else {
-                JOptionPane.showMessageDialog(null,
-                        "Animal não encontrado!");
+                if (linhas > 0) {
+                    JOptionPane.showMessageDialog(null,
+                            "Animal removido com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Animal não encontrado!");
+                }
             }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Erro ao remover animal: " + e.getMessage());
         }
-
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null,
-                "Erro ao remover animal: " + e.getMessage());
     }
-}
-
 
 }

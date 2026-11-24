@@ -110,6 +110,40 @@ public class SolicitacaoDAO {
 
         return null;
     }
+    
+    //sobrecarga
+    public Solicitacao consultarPorId(int idSolicitacao,
+        Connection conexao) throws SQLException {
+
+    String sql = "SELECT * FROM Solicitacao WHERE idSolicitacao = ?";
+
+    try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+        stmt.setInt(1, idSolicitacao);
+
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+
+            Solicitacao solicitacao = new Solicitacao(
+                    rs.getInt("idCliente"),
+                    rs.getInt("idAnimal")
+            );
+
+            solicitacao.setIdSolicitacao(rs.getInt("idSolicitacao"));
+
+            solicitacao.setDataSolicitacao(
+                    rs.getDate("dataSolicitacao").toLocalDate()
+            );
+
+            solicitacao.setStatus(rs.getString("status"));
+
+            return solicitacao;
+        }
+    }
+
+    return null;
+}
 
     public ArrayList<Solicitacao> consultarPorCliente(int idCliente) {
 
@@ -166,5 +200,21 @@ public class SolicitacaoDAO {
         }
 
         return false;
+    }
+    
+    //sobrecarga
+    public boolean atualizarStatus(int idSolicitacao, String status,
+            Connection conexao) throws SQLException {
+
+        String sql = "UPDATE Solicitacao SET status = ? "
+                + "WHERE idSolicitacao = ? AND status = 'Pendente'";
+
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setString(1, status);
+            stmt.setInt(2, idSolicitacao);
+
+            return stmt.executeUpdate() > 0;
+        }
     }
 }
