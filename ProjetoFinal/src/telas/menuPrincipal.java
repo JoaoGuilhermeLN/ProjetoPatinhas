@@ -132,11 +132,15 @@ public class menuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoVerAnimaisActionPerformed
 
     private void botaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarActionPerformed
-        // TODO add your handling code here:
+        TelaLoginUm tela = new TelaLoginUm();
+        tela.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_botaoEntrarActionPerformed
 
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
-        // TODO add your handling code here:
+        TelaCadastroUm tela = new TelaCadastroUm();
+        tela.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_botaoCadastrarActionPerformed
 
     /**
