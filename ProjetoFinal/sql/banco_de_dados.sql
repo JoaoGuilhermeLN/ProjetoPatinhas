@@ -61,14 +61,13 @@ CREATE TABLE Usuario (
         REFERENCES Pessoa(idPessoa)
 );
 
-create table Adocao(
-  idAdocao int AUTO_INCREMENT PRIMARY KEY,
-  idAnimal int NOT NULL,
-  idCliente int NOT NULL,
-  dataAdocao date NOT NULL,
-
-  foreign key(idAnimal) references Animal(idAnimal),
-  foreign key(idCliente) references Cliente(idPessoa)
+CREATE TABLE Adocao(
+    idAdocao INT AUTO_INCREMENT PRIMARY KEY,
+    idAnimal INT NOT NULL UNIQUE,
+    idCliente INT NOT NULL,
+    dataAdocao DATE NOT NULL,
+    FOREIGN KEY(idAnimal) REFERENCES Animal(idAnimal),
+    FOREIGN KEY(idCliente) REFERENCES Cliente(idPessoa)
 );
 
 CREATE TABLE IF NOT EXISTS Solicitacao (
