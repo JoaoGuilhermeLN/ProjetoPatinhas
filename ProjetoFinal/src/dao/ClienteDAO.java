@@ -81,6 +81,45 @@ public class ClienteDAO {
             }
         }
     }
+    
+    // sobrecarga de métodos
+    public int inserirCliente(Cliente cliente, Connection conexao)
+        throws SQLException {
+
+    String sql = "INSERT INTO Cliente (idPessoa, dataNascimento, tipoMoradia) VALUES (?, ?, ?)";
+
+    // Cadastrar endereço
+    EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
+
+    int idEndereco = enderecoDAO.inserirEndereco(cliente.getEndereco());
+
+    if (idEndereco <= 0) {
+        throw new SQLException("Erro ao cadastrar endereço.");
+    }
+
+    // Cadastrar pessoa
+    PessoaDAO pessoaDAO = new PessoaDAO(conexao);
+
+    int idPessoa = pessoaDAO.inserirPessoa(cliente);
+
+    if (idPessoa <= 0) {
+        throw new SQLException("Erro ao cadastrar pessoa.");
+    }
+
+    // Cadastrar cliente
+    try (PreparedStatement ps = conexao.prepareStatement(sql)) {
+
+        ps.setInt(1, idPessoa);
+        ps.setDate(2, java.sql.Date.valueOf(cliente.getDataNascimento()));
+        ps.setString(3, cliente.getTipoMoradia());
+
+        if (ps.executeUpdate() == 0) {
+            throw new SQLException("Erro ao cadastrar cliente.");
+        }
+    }
+
+    return idPessoa;
+}
 
     // LISTAR TODOS OS CLIENTES
     public ArrayList<Cliente> listarClientes() {

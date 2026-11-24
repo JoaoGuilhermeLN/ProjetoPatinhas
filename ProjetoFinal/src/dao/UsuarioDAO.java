@@ -32,6 +32,25 @@ public class UsuarioDAO {
                     "Erro ao cadastrar usuário: " + e.getMessage());
         }
     }
+    
+    //sobrecarga de metodos
+    public void inserirUsuario(Usuario usuario, Connection conexao)
+        throws SQLException {
+
+    String sql = "INSERT INTO Usuario (idPessoa, login, senha, perfil) VALUES (?, ?, ?, ?)";
+
+    try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+        stmt.setInt(1, usuario.getIdPessoa());
+        stmt.setString(2, usuario.getLogin());
+        stmt.setString(3, usuario.getSenha());
+        stmt.setString(4, usuario.getPerfil());
+
+        if (stmt.executeUpdate() == 0) {
+            throw new SQLException("Erro ao cadastrar usuario.");
+        }
+    }
+}
 
     public Usuario buscarPorLogin(String login) {
 
