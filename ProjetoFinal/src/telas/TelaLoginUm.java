@@ -63,7 +63,7 @@ public class TelaLoginUm extends javax.swing.JFrame {
         lblVoltar.setFont(new java.awt.Font("Txt_IV50", 0, 12)); // NOI18N
         lblVoltar.setForeground(new java.awt.Color(255, 255, 255));
         lblVoltar.setText("Voltar");
-        lblVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblVoltarMouseClicked(evt);
