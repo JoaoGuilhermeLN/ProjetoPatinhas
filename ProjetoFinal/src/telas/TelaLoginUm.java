@@ -37,7 +37,7 @@ public class TelaLoginUm extends javax.swing.JFrame {
         login = new javax.swing.JTextField();
         btnEntrar1 = new javax.swing.JButton();
         lblVoltar = new javax.swing.JLabel();
-        telaFundo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -71,9 +71,8 @@ public class TelaLoginUm extends javax.swing.JFrame {
         });
         getContentPane().add(lblVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 690, -1, -1));
 
-        telaFundo.setFont(new java.awt.Font("Swis721 Blk BT", 0, 12)); // NOI18N
-        telaFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundoTelaLogin.png"))); // NOI18N
-        getContentPane().add(telaFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/tela projeto final.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1520, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -142,9 +141,9 @@ public class TelaLoginUm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnEntrar1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblVoltar;
     private javax.swing.JTextField login;
-    private javax.swing.JLabel telaFundo;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

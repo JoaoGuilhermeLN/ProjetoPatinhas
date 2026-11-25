@@ -56,7 +56,7 @@ public class TelaCadastroUm extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         clickEntrar = new javax.swing.JLabel();
         texto = new javax.swing.JLabel();
-        fundoTelaCadastro = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -141,8 +141,8 @@ public class TelaCadastroUm extends javax.swing.JFrame {
         texto.setText("Já possui uma conta? ");
         getContentPane().add(texto, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 570, -1, -1));
 
-        fundoTelaCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundoCadastroAtt.png"))); // NOI18N
-        getContentPane().add(fundoTelaCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/tela projeto final (2).png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -324,7 +324,7 @@ public class TelaCadastroUm extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JLabel clickEntrar;
     private javax.swing.JComboBox<String> cmbEstado;
-    private javax.swing.JLabel fundoTelaCadastro;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel texto;
     private javax.swing.JFormattedTextField txtCep;
     private javax.swing.JTextField txtCidade;
