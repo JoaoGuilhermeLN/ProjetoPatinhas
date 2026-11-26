@@ -39,6 +39,7 @@ public class areaAdministrativa extends javax.swing.JFrame {
         botaoClientesAnim = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaRelatorios = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,7 +54,7 @@ public class areaAdministrativa extends javax.swing.JFrame {
         botaoAnimaisDis.setBackground(new java.awt.Color(134, 105, 189));
         botaoAnimaisDis.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
         botaoAnimaisDis.setForeground(new java.awt.Color(255, 255, 255));
-        botaoAnimaisDis.setText("Animais disponíveis");
+        botaoAnimaisDis.setText("Ver animais");
         botaoAnimaisDis.addActionListener(this::botaoAnimaisDisActionPerformed);
         getContentPane().add(botaoAnimaisDis, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 360, 50));
 
@@ -106,6 +107,9 @@ public class areaAdministrativa extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tabelaRelatorios);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 457, 730, 290));
+
+        jButton2.setText("Cadastrar Animais");
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 250, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/Patinhas area adm(1).png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1520, 810));
@@ -177,6 +181,7 @@ public class areaAdministrativa extends javax.swing.JFrame {
     private javax.swing.JButton botaoFunciCargo;
     private javax.swing.JButton botaoQuantStatus;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaRelatorios;

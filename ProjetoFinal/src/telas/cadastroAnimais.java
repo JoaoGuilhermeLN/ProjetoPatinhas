@@ -4,15 +4,23 @@
  */
 package telas;
 
+import javax.swing.JFileChooser;
+import javax.swing.ImageIcon;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.File;
+import java.awt.Image;
+import model.Animal;
+import dao.AnimalDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aluno
  */
 public class cadastroAnimais extends javax.swing.JFrame {
 
-    /**
-     * Creates new form cadastroAnimais
-     */
+     private File fotoSelecionada;
+     
     public cadastroAnimais() {
         initComponents();
     }
@@ -27,30 +35,215 @@ public class cadastroAnimais extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        nomeAnimal = new javax.swing.JTextField();
+        idadeAprox = new javax.swing.JTextField();
+        sexoAnimal = new javax.swing.JTextField();
+        especieAnimal = new javax.swing.JTextField();
+        racaAnimal = new javax.swing.JTextField();
+        porteAnimal = new javax.swing.JTextField();
+        lblFoto = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        btnFoto = new javax.swing.JButton();
+        btnCadastro = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Nome: ");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 310, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(627, 627, 627)
-                .addComponent(jLabel1)
-                .addContainerGap(1047, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(321, 321, 321)
-                .addComponent(jLabel1)
-                .addContainerGap(476, Short.MAX_VALUE))
-        );
+        jLabel3.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(242, 242, 242));
+        jLabel3.setText("Raça: ");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 550, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(242, 242, 242));
+        jLabel4.setText("Espécie: ");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 490, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(242, 242, 242));
+        jLabel5.setText("Idade Aproximada :");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(242, 242, 242));
+        jLabel6.setText("Sexo: ");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(242, 242, 242));
+        jLabel7.setText("Porte: ");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 610, -1, -1));
+
+        nomeAnimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeAnimalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nomeAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 350, -1));
+
+        idadeAprox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idadeAproxActionPerformed(evt);
+            }
+        });
+        getContentPane().add(idadeAprox, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, 350, 20));
+        getContentPane().add(sexoAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 450, 350, -1));
+
+        especieAnimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                especieAnimalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(especieAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 510, 350, -1));
+        getContentPane().add(racaAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 570, 350, -1));
+        getContentPane().add(porteAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 630, 350, -1));
+
+        lblFoto.setForeground(new java.awt.Color(134, 105, 189));
+        lblFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFoto.setText("Nenhuma foto selecionada");
+        lblFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblFoto.setOpaque(true);
+        getContentPane().add(lblFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 330, 270, 240));
+
+        jLabel8.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(242, 242, 242));
+        jLabel8.setText("Foto do animal");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 310, -1, -1));
+
+        btnFoto.setBackground(new java.awt.Color(134, 105, 189));
+        btnFoto.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        btnFoto.setForeground(new java.awt.Color(255, 255, 255));
+        btnFoto.setText("Selecionar Foto");
+        btnFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFotoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 590, 270, 70));
+
+        btnCadastro.setBackground(new java.awt.Color(134, 105, 189));
+        btnCadastro.setFont(new java.awt.Font("Artifakt Element Black", 0, 14)); // NOI18N
+        btnCadastro.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastro.setText("Confirmar Cadastro");
+        btnCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastroActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(643, 700, 230, -1));
+
+        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/botao sair.png"))); // NOI18N
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 120, 40, 50));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/cadastro animais.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void idadeAproxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idadeAproxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idadeAproxActionPerformed
+
+    private void btnFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFotoActionPerformed
+        
+        JFileChooser seletor = new JFileChooser();
+
+seletor.setDialogTitle("Selecione a foto do animal");
+
+seletor.setFileFilter(
+    new FileNameExtensionFilter("Imagens", "jpg", "jpeg", "png")
+);
+
+if (seletor.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+
+    fotoSelecionada = seletor.getSelectedFile();
+
+    ImageIcon icone = new ImageIcon(
+        fotoSelecionada.getAbsolutePath()
+    );
+
+    Image imagem = icone.getImage().getScaledInstance(
+        lblFoto.getWidth(),
+        lblFoto.getHeight(),
+        Image.SCALE_SMOOTH
+    );
+
+    lblFoto.setText("");
+    lblFoto.setIcon(new ImageIcon(imagem));
+
+    btnFoto.setText("Alterar foto");
+}
+    }//GEN-LAST:event_btnFotoActionPerformed
+
+    private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
+        
+        String nome = nomeAnimal.getText().trim();
+        String especie = especieAnimal.getText().trim();
+        String raca = racaAnimal.getText().trim();
+        String sexo = sexoAnimal.getText().trim();
+        String porte = porteAnimal.getText().trim();
+        String idadeTexto = idadeAprox.getText().trim();
+
+        if (nome.isEmpty() || especie.isEmpty() || 
+            raca.isEmpty() || sexo.isEmpty() || 
+            porte.isEmpty() || idadeTexto.isEmpty()) {
+
+            JOptionPane.showMessageDialog(this,
+                "Preencha todos os campos!");
+            return;
+        }
+
+        try {
+            int idade = Integer.parseInt(idadeTexto);
+
+            if (idade < 0) {
+                JOptionPane.showMessageDialog(this,
+                    "Informe uma idade válida!");
+                return;
+            }
+
+            Animal animal = new Animal(
+                0, nome, especie, raca, idade, sexo, porte
+            );
+
+            AnimalDAO animalDAO = new AnimalDAO();
+            animalDAO.inserir(animal);
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this,
+                "A idade deve ser um número inteiro!");
+        }
+    }//GEN-LAST:event_btnCadastroActionPerformed
+
+    private void nomeAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeAnimalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeAnimalActionPerformed
+
+    private void especieAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_especieAnimalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_especieAnimalActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -88,6 +281,23 @@ public class cadastroAnimais extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCadastro;
+    private javax.swing.JButton btnFoto;
+    private javax.swing.JButton btnSair;
+    private javax.swing.JTextField especieAnimal;
+    private javax.swing.JTextField idadeAprox;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel lblFoto;
+    private javax.swing.JTextField nomeAnimal;
+    private javax.swing.JTextField porteAnimal;
+    private javax.swing.JTextField racaAnimal;
+    private javax.swing.JTextField sexoAnimal;
     // End of variables declaration//GEN-END:variables
 }
