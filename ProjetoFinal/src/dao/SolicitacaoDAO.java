@@ -110,40 +110,40 @@ public class SolicitacaoDAO {
 
         return null;
     }
-    
+
     //sobrecarga
     public Solicitacao consultarPorId(int idSolicitacao,
-        Connection conexao) throws SQLException {
+            Connection conexao) throws SQLException {
 
-    String sql = "SELECT * FROM Solicitacao WHERE idSolicitacao = ?";
+        String sql = "SELECT * FROM Solicitacao WHERE idSolicitacao = ?";
 
-    try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-        stmt.setInt(1, idSolicitacao);
+            stmt.setInt(1, idSolicitacao);
 
-        ResultSet rs = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
 
-        if (rs.next()) {
+            if (rs.next()) {
 
-            Solicitacao solicitacao = new Solicitacao(
-                    rs.getInt("idCliente"),
-                    rs.getInt("idAnimal")
-            );
+                Solicitacao solicitacao = new Solicitacao(
+                        rs.getInt("idCliente"),
+                        rs.getInt("idAnimal")
+                );
 
-            solicitacao.setIdSolicitacao(rs.getInt("idSolicitacao"));
+                solicitacao.setIdSolicitacao(rs.getInt("idSolicitacao"));
 
-            solicitacao.setDataSolicitacao(
-                    rs.getDate("dataSolicitacao").toLocalDate()
-            );
+                solicitacao.setDataSolicitacao(
+                        rs.getDate("dataSolicitacao").toLocalDate()
+                );
 
-            solicitacao.setStatus(rs.getString("status"));
+                solicitacao.setStatus(rs.getString("status"));
 
-            return solicitacao;
+                return solicitacao;
+            }
         }
-    }
 
-    return null;
-}
+        return null;
+    }
 
     public ArrayList<Solicitacao> consultarPorCliente(int idCliente) {
 
@@ -201,7 +201,7 @@ public class SolicitacaoDAO {
 
         return false;
     }
-    
+
     //sobrecarga
     public boolean atualizarStatus(int idSolicitacao, String status,
             Connection conexao) throws SQLException {
@@ -218,93 +218,93 @@ public class SolicitacaoDAO {
         }
     }
 
-    public boolean aprovarSolicitacao(int idSolicitacao){
+    public boolean aprovarSolicitacao(int idSolicitacao) {
         String sqlBusca = "SELECT idCliente, idAnimal, status "
-            + "FROM Solicitacao "
-            + "WHERE idSolicitacao = ? FOR UPDATE ";
+                + "FROM Solicitacao "
+                + "WHERE idSolicitacao = ? FOR UPDATE ";
 
         String sqlAdocao = "INSERT INTO Adocao "
-            + "(idAnimal, idCliente, dataAdocao) "
-            + "VALUES ( ?, ?, CURDATE ())";
+                + "(idAnimal, idCliente, dataAdocao) "
+                + "VALUES ( ?, ?, CURDATE ())";
 
         String sqlAtualiza = "UPDATE Solicitacao "
-            + "SET Status = 'Aprovada' "
-            + "WHERE idSolicitacao = ?"
-            + "AND Status = 'Pendente' ";
+                + "SET Status = 'Aprovada' "
+                + "WHERE idSolicitacao = ?"
+                + "AND Status = 'Pendente' ";
 
-        try{
+        try {
 
             conexao.setAutoCommit(false);
 
-              PreparedStatement stmtBusca = conexao.prepareStatement(sqlBusca);
+            PreparedStatement stmtBusca = conexao.prepareStatement(sqlBusca);
 
-                stmtBusca.setInt(1, idSolicitacao);
-        
-                ResultSet rs = stmtBusca.executeQuery();
-        
-                if (!rs.next()) {
-        
-                    conexao.rollback();
-        
-                    return false;
-                }
-        
-                int idCliente = rs.getInt("idCliente");
-                int idAnimal = rs.getInt("idAnimal");
-                String status = rs.getString("status");
-        
-                rs.close();
-                stmtBusca.close();
+            stmtBusca.setInt(1, idSolicitacao);
 
-                if (!status.equalsIgnoreCase("Pendente")) {
-                    
+            ResultSet rs = stmtBusca.executeQuery();
+
+            if (!rs.next()) {
+
+                conexao.rollback();
+
+                return false;
+            }
+
+            int idCliente = rs.getInt("idCliente");
+            int idAnimal = rs.getInt("idAnimal");
+            String status = rs.getString("status");
+
+            rs.close();
+            stmtBusca.close();
+
+            if (!status.equalsIgnoreCase("Pendente")) {
+
                 conexao.rollback();
                 return false;
-                }
+            }
 
-                PreparedStatement stmtAdocao =
-                conexao.prepareStatement(sqlAdocao);
+            PreparedStatement stmtAdocao
+                    = conexao.prepareStatement(sqlAdocao);
 
-                stmtAdocao.setInt(1, idAnimal);
-                stmtAdocao.setInt(2, idCliente);
-        
-                stmtAdocao.executeUpdate();
-        
-                stmtAdocao.close();
+            stmtAdocao.setInt(1, idAnimal);
+            stmtAdocao.setInt(2, idCliente);
 
-                PreparedStatement stmtAtualiza =
-                    conexao.prepareStatement(sqlAtualiza);
+            stmtAdocao.executeUpdate();
 
-                stmtAtualiza.setInt(1, idSolicitacao);
+            stmtAdocao.close();
 
-                int linhasAfetadas = stmtAtualiza.executeUpdate();
+            PreparedStatement stmtAtualiza
+                    = conexao.prepareStatement(sqlAtualiza);
 
-                stmtAtualiza.close();
+            stmtAtualiza.setInt(1, idSolicitacao);
 
-                if (linhasAfetadas == 0) {
-                    
-                    conexao.rollback();
-                    return false;
-                }
+            int linhasAfetadas = stmtAtualiza.executeUpdate();
 
-                conexao.commit();
-                return true;
+            stmtAtualiza.close();
 
-        }catch (SQLException e) {
+            if (linhasAfetadas == 0) {
+
+                conexao.rollback();
+                return false;
+            }
+
+            conexao.commit();
+            return true;
+
+        } catch (SQLException e) {
 
             try {
                 conexao.rollback();
             } catch (SQLException erro) {
                 System.out.println("Erro no rollback: " + erro.getMessage());
             }
-    
+
             System.out.println("Erro ao aprovar solicitação: "
                     + e.getMessage());
-    
+
             return false;
-    
+
         } finally {
-    
+
             try {
                 conexao.setAutoCommit(true);
             } catch (SQLException e) {
@@ -312,4 +312,5 @@ public class SolicitacaoDAO {
                         + e.getMessage());
             }
         }
+    }
 }
