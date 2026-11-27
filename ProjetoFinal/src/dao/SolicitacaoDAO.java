@@ -310,7 +310,28 @@ public class SolicitacaoDAO {
             } catch (SQLException e) {
                 System.out.println("Erro ao restaurar conexão: "
                         + e.getMessage());
-            }
+            } 
         }
+    }
+
+    public boolean recusarSolicitacao (int idSolicitacao ) {
+
+        String sql "UPDATE Solicitacao "
+            +"SET Status = 'Recusada' "
+            +"WHERE idSolicitacao = ? "
+            +"AND Status = 'Pendente' "
+
+        try (PreparedStatament stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setInt(1, idSolicitacao);
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0;
+
+        }catch (SQLException e){
+
+            System.out.println("Erro ao recusar solicitação!" +e.getMessage());
+            return false;
+        }
+        
     }
 }
