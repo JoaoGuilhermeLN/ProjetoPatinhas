@@ -170,31 +170,32 @@ public class cadastroAnimais extends javax.swing.JFrame {
 
         JFileChooser seletor = new JFileChooser();
 
-        seletor.setDialogTitle("Selecione a foto do animal");
+          seletor.setDialogTitle("Selecione a foto do animal");
+          
+          seletor.setFileFilter(
+              new FileNameExtensionFilter("Imagens", "jpg", "jpeg", "png")
+          );
+          
+          if (seletor.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+          
+              fotoSelecionada = seletor.getSelectedFile();
+          
+              ImageIcon icone = new ImageIcon(
+                  fotoSelecionada.getAbsolutePath()
+              );
+          
+              Image imagem = icone.getImage().getScaledInstance(
+                  lblFoto.getWidth(),
+                  lblFoto.getHeight(),
+                  Image.SCALE_SMOOTH
+         );
 
-        seletor.setFileFilter(
-                new FileNameExtensionFilter("Imagens", "jpg", "jpeg", "png")
-        );
+              lblFoto.setText("");
+              lblFoto.setIcon(new ImageIcon(imagem));
+          
+              btnFoto.setText("Alterar foto");
+          }
 
-        if (seletor.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-
-            fotoSelecionada = seletor.getSelectedFile();
-
-            ImageIcon icone = new ImageIcon(
-                    fotoSelecionada.getAbsolutePath()
-            );
-
-            Image imagem = icone.getImage().getScaledInstance(
-                    lblFoto.getWidth(),
-                    lblFoto.getHeight(),
-                    Image.SCALE_SMOOTH
-            );
-
-            lblFoto.setText("");
-            lblFoto.setIcon(new ImageIcon(imagem));
-
-            btnFoto.setText("Alterar foto");
-        }
     }//GEN-LAST:event_btnFotoActionPerformed
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
