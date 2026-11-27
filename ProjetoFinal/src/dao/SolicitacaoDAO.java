@@ -217,4 +217,99 @@ public class SolicitacaoDAO {
             return stmt.executeUpdate() > 0;
         }
     }
+
+    public boolean aprovarSolicitacao(int idSolicitacao){
+        String sqlBusca = "SELECT idCliente, idAnimal, status "
+            + "FROM Solicitacao "
+            + "WHERE idSolicitacao = ? FOR UPDATE ";
+
+        String sqlAdocao = "INSERT INTO Adocao "
+            + "(idAnimal, idCliente, dataAdocao) "
+            + "VALUES ( ?, ?, CURDATE ())";
+
+        String sqlAtualiza = "UPDATE Solicitacao "
+            + "SET Status = 'Aprovada' "
+            + "WHERE idSolicitacao = ?"
+            + "AND Status = 'Pendente' ";
+
+        try{
+
+            conexao.setAutoCommit(false);
+
+              PreparedStatement stmtBusca = conexao.prepareStatement(sqlBusca);
+
+                stmtBusca.setInt(1, idSolicitacao);
+        
+                ResultSet rs = stmtBusca.executeQuery();
+        
+                if (!rs.next()) {
+        
+                    conexao.rollback();
+        
+                    return false;
+                }
+        
+                int idCliente = rs.getInt("idCliente");
+                int idAnimal = rs.getInt("idAnimal");
+                String status = rs.getString("status");
+        
+                rs.close();
+                stmtBusca.close();
+
+                if (!status.equalsIgnoreCase("Pendente")) {
+                    
+                conexao.rollback();
+                return false;
+                }
+
+                PreparedStatement stmtAdocao =
+                conexao.prepareStatement(sqlAdocao);
+
+                stmtAdocao.setInt(1, idAnimal);
+                stmtAdocao.setInt(2, idCliente);
+        
+                stmtAdocao.executeUpdate();
+        
+                stmtAdocao.close();
+
+                PreparedStatement stmtAtualiza =
+                    conexao.prepareStatement(sqlAtualiza);
+
+                stmtAtualiza.setInt(1, idSolicitacao);
+
+                int linhasAfetadas = stmtAtualiza.executeUpdate();
+
+                stmtAtualiza.close();
+
+                if (linhasAfetadas == 0) {
+                    
+                    conexao.rollback();
+                    return false;
+                }
+
+                conexao.commit();
+                return true;
+
+        }catch (SQLException e) {
+
+            try {
+                conexao.rollback();
+            } catch (SQLException erro) {
+                System.out.println("Erro no rollback: " + erro.getMessage());
+            }
+    
+            System.out.println("Erro ao aprovar solicitação: "
+                    + e.getMessage());
+    
+            return false;
+    
+        } finally {
+    
+            try {
+                conexao.setAutoCommit(true);
+            } catch (SQLException e) {
+                System.out.println("Erro ao restaurar conexão: "
+                        + e.getMessage());
+            }
+        }
 }
