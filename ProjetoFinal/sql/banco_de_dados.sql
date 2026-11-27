@@ -75,7 +75,9 @@ CREATE TABLE IF NOT EXISTS Solicitacao (
     idCliente INT NOT NULL,
     idAnimal INT NOT NULL,
     dataSolicitacao DATE NOT NULL,
-    status VARCHAR(20) NOT NULL DEFAULT 'Pendente',
+    status ENUM('Pendente', 'Aprovada', 'Recusada')
+	DEFAULT 'Pendente'
+	NOT NULL
 
     FOREIGN KEY (idCliente) REFERENCES Cliente(idPessoa),
     FOREIGN KEY (idAnimal) REFERENCES Animal(idAnimal)
