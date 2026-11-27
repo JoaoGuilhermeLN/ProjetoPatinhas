@@ -10,6 +10,8 @@ import dao.AnimalDAO;
 import model.Animal;
 import java.util.ArrayList;
 
+import model.Usuario;
+
 public class TelaAdocaoTeste extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaAdocaoTeste.class.getName());
@@ -18,6 +20,10 @@ public class TelaAdocaoTeste extends javax.swing.JFrame {
      * Creates new form TelaAdocaoTeste
      */
     public TelaAdocaoTeste() {
+        this(null);
+    }
+
+    public TelaAdocaoTeste(Usuario usuario) {
         initComponents();
 
         Dimension tela = Toolkit.getDefaultToolkit().getScreenSize();
@@ -48,7 +54,7 @@ public class TelaAdocaoTeste extends javax.swing.JFrame {
         painelAnimais.removeAll();
 
         for (Animal animal : animais) {
-            CardAnimal card = new CardAnimal(animal);
+            CardAnimal card = new CardAnimal(animal, usuario);
             painelAnimais.add(card);
         }
 

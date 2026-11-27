@@ -1,12 +1,12 @@
- areaAdministrativa tela = new areaAdministrativa();
-
-    tela.setVisible(true);
-
-    this.dispose();/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+// areaAdministrativa tela = new areaAdministrativa();
+//   tela.setVisible(true);
+//    this.dispose();/*
 package telas;
+
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.io.IOException;
+import java.util.UUID;
 
 import javax.swing.JFileChooser;
 import javax.swing.ImageIcon;
@@ -23,8 +23,8 @@ import javax.swing.JOptionPane;
  */
 public class cadastroAnimais extends javax.swing.JFrame {
 
-     private File fotoSelecionada;
-     
+    private File fotoSelecionada;
+
     public cadastroAnimais() {
         initComponents();
     }
@@ -167,38 +167,38 @@ public class cadastroAnimais extends javax.swing.JFrame {
     }//GEN-LAST:event_idadeAproxActionPerformed
 
     private void btnFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFotoActionPerformed
-        
+
         JFileChooser seletor = new JFileChooser();
 
-          seletor.setDialogTitle("Selecione a foto do animal");
-          
-          seletor.setFileFilter(
-              new FileNameExtensionFilter("Imagens", "jpg", "jpeg", "png")
-          );
-          
-          if (seletor.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-          
-              fotoSelecionada = seletor.getSelectedFile();
-          
-              ImageIcon icone = new ImageIcon(
-                  fotoSelecionada.getAbsolutePath()
-              );
-          
-              Image imagem = icone.getImage().getScaledInstance(
-                  lblFoto.getWidth(),
-                  lblFoto.getHeight(),
-                  Image.SCALE_SMOOTH
-         );
+        seletor.setDialogTitle("Selecione a foto do animal");
 
-              lblFoto.setText("");
-              lblFoto.setIcon(new ImageIcon(imagem));
-          
-              btnFoto.setText("Alterar foto");
-          }
+        seletor.setFileFilter(
+                new FileNameExtensionFilter("Imagens", "jpg", "jpeg", "png")
+        );
+
+        if (seletor.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+
+            fotoSelecionada = seletor.getSelectedFile();
+
+            ImageIcon icone = new ImageIcon(
+                    fotoSelecionada.getAbsolutePath()
+            );
+
+            Image imagem = icone.getImage().getScaledInstance(
+                    lblFoto.getWidth(),
+                    lblFoto.getHeight(),
+                    Image.SCALE_SMOOTH
+            );
+
+            lblFoto.setText("");
+            lblFoto.setIcon(new ImageIcon(imagem));
+
+            btnFoto.setText("Alterar foto");
+        }
     }//GEN-LAST:event_btnFotoActionPerformed
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
-        
+
         String nome = nomeAnimal.getText().trim();
         String especie = especieAnimal.getText().trim();
         String raca = racaAnimal.getText().trim();
@@ -206,12 +206,12 @@ public class cadastroAnimais extends javax.swing.JFrame {
         String porte = porteAnimal.getText().trim();
         String idadeTexto = idadeAprox.getText().trim();
 
-        if (nome.isEmpty() || especie.isEmpty() || 
-            raca.isEmpty() || sexo.isEmpty() || 
-            porte.isEmpty() || idadeTexto.isEmpty()) {
+        if (nome.isEmpty() || especie.isEmpty()
+                || raca.isEmpty() || sexo.isEmpty()
+                || porte.isEmpty() || idadeTexto.isEmpty()) {
 
             JOptionPane.showMessageDialog(this,
-                "Preencha todos os campos!");
+                    "Preencha todos os campos!");
             return;
         }
 
@@ -220,20 +220,45 @@ public class cadastroAnimais extends javax.swing.JFrame {
 
             if (idade < 0) {
                 JOptionPane.showMessageDialog(this,
-                    "Informe uma idade válida!");
+                        "Informe uma idade válida!");
                 return;
             }
 
             Animal animal = new Animal(
-                0, nome, especie, raca, idade, sexo, porte
+                    0, nome, especie, raca, idade, sexo, porte
             );
+
+            if (fotoSelecionada != null) {
+                try {
+                    File pasta = new File("fotos");
+                    pasta.mkdirs();
+
+                    String nomeArquivo = UUID.randomUUID().toString()
+                            + "_" + fotoSelecionada.getName();
+
+                    File destino = new File(pasta, nomeArquivo);
+
+                    Files.copy(
+                            fotoSelecionada.toPath(),
+                            destino.toPath(),
+                            StandardCopyOption.REPLACE_EXISTING
+                    );
+
+                    animal.setFoto("fotos/" + nomeArquivo);
+
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(this,
+                            "Erro ao salvar a foto!");
+                    return;
+                }
+            }
 
             AnimalDAO animalDAO = new AnimalDAO();
             animalDAO.inserir(animal);
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this,
-                "A idade deve ser um número inteiro!");
+                    "A idade deve ser um número inteiro!");
         }
     }//GEN-LAST:event_btnCadastroActionPerformed
 
@@ -246,13 +271,13 @@ public class cadastroAnimais extends javax.swing.JFrame {
     }//GEN-LAST:event_especieAnimalActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-       
-         areaAdministrativa tela = new areaAdministrativa();
 
-         tela.setVisible(true);
+        areaAdministrativa tela = new areaAdministrativa();
 
-         this.dispose();
-         
+        tela.setVisible(true);
+
+        this.dispose();
+
     }//GEN-LAST:event_btnSairActionPerformed
 
     /**

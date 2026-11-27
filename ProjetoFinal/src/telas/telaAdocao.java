@@ -8,6 +8,9 @@ package telas;
  *
  * @author Aluno
  */
+
+import model.Usuario;
+
 public class telaAdocao extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(telaAdocao.class.getName());
@@ -15,9 +18,16 @@ public class telaAdocao extends javax.swing.JFrame {
     /**
      * Creates new form telaAdocao
      */
+    
+    private Usuario usuario;
+    
     public telaAdocao() {
         initComponents();
     }
+    public telaAdocao(Usuario usuario) {
+    this();
+    this.usuario = usuario;
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,7 +58,7 @@ public class telaAdocao extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        TelaAdocaoTeste tela = new TelaAdocaoTeste();
+        TelaAdocaoTeste tela = new TelaAdocaoTeste(usuario);
         tela.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

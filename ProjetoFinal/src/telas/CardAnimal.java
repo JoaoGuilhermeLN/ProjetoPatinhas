@@ -10,11 +10,18 @@ import java.awt.Image;
 import java.net.URL;
 import javax.swing.ImageIcon;
 
+import model.Usuario;
+import service.AdocaoService;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alex
  */
 public class CardAnimal extends javax.swing.JPanel {
+
+    private Animal animal;
+    private Usuario usuario;
 
     /**
      * Creates new form CardAnimal
@@ -23,8 +30,10 @@ public class CardAnimal extends javax.swing.JPanel {
         initComponents();
     }
 
-    public CardAnimal(Animal animal) {
+    public CardAnimal(Animal animal, Usuario usuario) {
         initComponents();
+        this.animal = animal;
+        this.usuario = usuario;
 
         lblNome.setText(animal.getNomeAnimal());
 
@@ -122,8 +131,28 @@ public class CardAnimal extends javax.swing.JPanel {
         btnAdotar.setText("Quero adotar");
         btnAdotar.setBorderPainted(false);
         btnAdotar.setFocusPainted(false);
+        btnAdotar.addActionListener(this::btnAdotarActionPerformed);
         add(btnAdotar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 248, 190, 32));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAdotarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdotarActionPerformed
+        if (usuario == null || animal == null) {
+            JOptionPane.showMessageDialog(this, "Faça login para solicitar uma adoção!");
+            return;
+        }
+
+        AdocaoService service = new AdocaoService();
+
+        boolean sucesso = service.solicitarAdocao(usuario, animal.getIdAnimal());
+
+        if (sucesso) {
+            JOptionPane.showMessageDialog(this, "Solicitação enviada com sucesso!");
+            btnAdotar.setText("Solicitação enviada");
+            btnAdotar.setEnabled(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "Não foi possível solicitar a adoção!");
+        }
+    }//GEN-LAST:event_btnAdotarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

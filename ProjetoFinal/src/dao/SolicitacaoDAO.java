@@ -316,12 +316,12 @@ public class SolicitacaoDAO {
 
     public boolean recusarSolicitacao (int idSolicitacao ) {
 
-        String sql "UPDATE Solicitacao "
+        String sql = "UPDATE Solicitacao "
             +"SET Status = 'Recusada' "
             +"WHERE idSolicitacao = ? "
-            +"AND Status = 'Pendente' "
+            +"AND Status = 'Pendente' ";
 
-        try (PreparedStatament stmt = conexao.prepareStatement(sql)) {
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setInt(1, idSolicitacao);
             int linhasAfetadas = stmt.executeUpdate();

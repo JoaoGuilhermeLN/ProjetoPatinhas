@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author Alex
@@ -30,11 +33,11 @@ public class TelaSolicitacoes extends javax.swing.JFrame {
         lblPendentes.setFont(new java.awt.Font("Artifakt Element Black", 0, 32));
         lblPendentes.setForeground(java.awt.Color.WHITE);
         lblPendentes.setOpaque(false);
-        
+
         lblAprovadas.setFont(new java.awt.Font("Artifakt Element Black", 0, 32));
         lblAprovadas.setForeground(java.awt.Color.WHITE);
         lblAprovadas.setOpaque(false);
-        
+
         lblRecusadas.setFont(new java.awt.Font("Artifakt Element Black", 0, 32));
         lblRecusadas.setForeground(java.awt.Color.WHITE);
         lblRecusadas.setOpaque(false);
@@ -52,8 +55,11 @@ public class TelaSolicitacoes extends javax.swing.JFrame {
     private void initComponents() {
 
         lblPendentes = new javax.swing.JLabel();
+        btnPendentes = new javax.swing.JButton();
         lblAprovadas = new javax.swing.JLabel();
+        btnAprovadas = new javax.swing.JButton();
         lblRecusadas = new javax.swing.JLabel();
+        btnRecusadas = new javax.swing.JButton();
         btnAprovar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
         btnVisualizar = new javax.swing.JButton();
@@ -69,13 +75,31 @@ public class TelaSolicitacoes extends javax.swing.JFrame {
         lblPendentes.setText("0");
         getContentPane().add(lblPendentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 300, -1, -1));
 
+        btnPendentes.setContentAreaFilled(false);
+        btnPendentes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPendentes.setFocusPainted(false);
+        btnPendentes.addActionListener(this::btnPendentesActionPerformed);
+        getContentPane().add(btnPendentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 257, 290, 110));
+
         lblAprovadas.setFont(new java.awt.Font("DialogInput", 0, 25)); // NOI18N
         lblAprovadas.setText("0");
         getContentPane().add(lblAprovadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 300, -1, -1));
 
+        btnAprovadas.setContentAreaFilled(false);
+        btnAprovadas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAprovadas.setFocusPainted(false);
+        btnAprovadas.addActionListener(this::btnAprovadasActionPerformed);
+        getContentPane().add(btnAprovadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 260, 300, 110));
+
         lblRecusadas.setFont(new java.awt.Font("DialogInput", 0, 25)); // NOI18N
         lblRecusadas.setText("0");
         getContentPane().add(lblRecusadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 300, -1, -1));
+
+        btnRecusadas.setContentAreaFilled(false);
+        btnRecusadas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRecusadas.setFocusPainted(false);
+        btnRecusadas.addActionListener(this::btnRecusadasActionPerformed);
+        getContentPane().add(btnRecusadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 260, 290, 110));
 
         btnAprovar.setBackground(new java.awt.Color(233, 221, 245));
         btnAprovar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -148,20 +172,20 @@ public class TelaSolicitacoes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVisualizarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        
+
         areaAdministrativa tela = new areaAdministrativa();
 
         tela.setVisible(true);
-    
-        this.dispose()
-            
+
+        this.dispose();
+
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnAprovarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAprovarActionPerformed
 
         int linha = tblSolicitacoes.getSelectedRow();
 
-        if (linha == -1){
+        if (linha == -1) {
             JOptionPane.showMessageDialog(this, "Selecione uma solicitação para aprovar. ");
             return;
         }
@@ -169,32 +193,31 @@ public class TelaSolicitacoes extends javax.swing.JFrame {
         int idSolicitacao = (int) tblSolicitacoes.getValueAt(linha, 0);
 
         int resposta = JOptionPane.showConfirmDialog(this, "Deseja aprovar essa solicitacao? ",
-                                                    "Confirmar",
-                                                    JOptionPane.YES_NO_OPTION);
-        if (resposta == JOptionPane.YES_OPTION){
+                "Confirmar",
+                JOptionPane.YES_NO_OPTION);
+        if (resposta == JOptionPane.YES_OPTION) {
 
-            SolicitacaoDAO dao = new SolicitacaoDAO ();
+            SolicitacaoDAO dao = new SolicitacaoDAO();
 
-            if(dao.aprovarSolicitacao(idSolicitacao)){
+            if (dao.aprovarSolicitacao(idSolicitacao)) {
 
                 JOptionPane.showMessageDialog(this, "Solicitação aprovada! ");
                 carregarSolicitacao();
-            }else{
+            } else {
 
                 JOptionPane.showMessageDialog(this, "Não foi possível aprovar. ");
             }
-            
+
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_btnAprovarActionPerformed
 
     private void btnRecusarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecusarActionPerformed
 
         int linha = tblSolicitacoes.getSelectedRow();
 
-        if(linha == -1){
+        if (linha == -1) {
             JOptionPane.showMessageDialog(this, "Selecione uma solicitação para recusar. ");
             return;
         }
@@ -202,46 +225,91 @@ public class TelaSolicitacoes extends javax.swing.JFrame {
         int idSolicitacao = (int) tblSolicitacoes.getValueAt(linha, 0);
 
         int resposta = JOptionPane.showConfirmDialog(this, "Deseja recusar essa solicitação? ",
-                                                    "Confirmar",
-                                                    JOptionPane.YES_NO_OPTION);
-        if(resposta == JOptionPane.YES_OPTION){
+                "Confirmar",
+                JOptionPane.YES_NO_OPTION);
+        if (resposta == JOptionPane.YES_OPTION) {
 
             SolicitacaoDAO dao = new SolicitacaoDAO();
 
-            if(dao.recusarSolicitacao(idSolicitacao)){
+            if (dao.recusarSolicitacao(idSolicitacao)) {
 
                 JOptionPane.showMessageDialog(this, "Solicitação recusada!");
                 carregarSolicitacao();
-                
-            }else{
+
+            } else {
                 JOptionPane.showMessageDialog(this, "Não foi possível recusar.");
             }
-            
+
         }
-        
+
     }//GEN-LAST:event_btnRecusarActionPerformed
 
-    public void carregarSolicitacao(){
+    public void carregarSolicitacao() {
 
         SolicitacaoDAO dao = new SolicitacaoDAO();
 
         ArrayList<Solicitacao> lista = dao.consultarTodos();
 
-        DefaultTableModel modelo = (DefaultTableModel) tblSolicitacoes.getModel();
+        DefaultTableModel modelo
+                = (DefaultTableModel) tblSolicitacoes.getModel();
 
         modelo.setRowCount(0);
 
-        for(Solicitacao s: lista){
+        int pendentes = 0;
+        int aprovadas = 0;
+        int recusadas = 0;
+
+        for (Solicitacao s : lista) {
+
             modelo.addRow(new Object[]{
-            s.getIdSolicitacao(),
-            s.getIdCliente(),
-            s.getIdAnimal(),
-            s.getDataSolicitacao(),
-            s.getStatus()
-            }); 
+                s.getIdSolicitacao(),
+                String.valueOf(s.getIdCliente()),
+                String.valueOf(s.getIdAnimal()),
+                s.getDataSolicitacao().toString(),
+                s.getStatus()
+            });
+
+            if ("Pendente".equals(s.getStatus())) {
+                pendentes++;
+            } else if ("Aprovada".equals(s.getStatus())) {
+                aprovadas++;
+            } else if ("Recusada".equals(s.getStatus())) {
+                recusadas++;
+            }
         }
+
+        lblPendentes.setText(String.valueOf(pendentes));
+        lblAprovadas.setText(String.valueOf(aprovadas));
+        lblRecusadas.setText(String.valueOf(recusadas));
     }
-    
+
+    private void filtrarSolicitacoes(String status) {
+
+        DefaultTableModel modelo
+                = (DefaultTableModel) tblSolicitacoes.getModel();
+
+        TableRowSorter<DefaultTableModel> sorter
+                = new TableRowSorter<>(modelo);
+
+        tblSolicitacoes.setRowSorter(sorter);
+
+        sorter.setRowFilter(
+                RowFilter.regexFilter("(?i)^" + status + "$", 4)
+        );
+    }
+
+    private void btnPendentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPendentesActionPerformed
+        filtrarSolicitacoes("Pendente");
+    }//GEN-LAST:event_btnPendentesActionPerformed
+
+    private void btnAprovadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAprovadasActionPerformed
+        filtrarSolicitacoes("Aprovada");
+    }//GEN-LAST:event_btnAprovadasActionPerformed
+
+    private void btnRecusadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecusadasActionPerformed
+        filtrarSolicitacoes("Recusada");
+    }//GEN-LAST:event_btnRecusadasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -268,7 +336,10 @@ public class TelaSolicitacoes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAprovadas;
     private javax.swing.JButton btnAprovar;
+    private javax.swing.JButton btnPendentes;
+    private javax.swing.JButton btnRecusadas;
     private javax.swing.JButton btnRecusar;
     private javax.swing.JButton btnVisualizar;
     private javax.swing.JButton btnVoltar;

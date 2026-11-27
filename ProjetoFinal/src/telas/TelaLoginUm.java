@@ -98,7 +98,7 @@ public class TelaLoginUm extends javax.swing.JFrame {
                 new areaAdministrativa().setVisible(true);
                 dispose();
             } else if (usuario.getPerfil().equals("CLIENTE")) {
-                new telaAdocao().setVisible(true);
+                new telaAdocao(usuario).setVisible(true);
                 dispose();
             }
         }
