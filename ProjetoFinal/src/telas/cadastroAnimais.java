@@ -1,4 +1,8 @@
-/*
+ areaAdministrativa tela = new areaAdministrativa();
+
+    tela.setVisible(true);
+
+    this.dispose();/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
@@ -166,31 +170,31 @@ public class cadastroAnimais extends javax.swing.JFrame {
         
         JFileChooser seletor = new JFileChooser();
 
-seletor.setDialogTitle("Selecione a foto do animal");
+          seletor.setDialogTitle("Selecione a foto do animal");
+          
+          seletor.setFileFilter(
+              new FileNameExtensionFilter("Imagens", "jpg", "jpeg", "png")
+          );
+          
+          if (seletor.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+          
+              fotoSelecionada = seletor.getSelectedFile();
+          
+              ImageIcon icone = new ImageIcon(
+                  fotoSelecionada.getAbsolutePath()
+              );
+          
+              Image imagem = icone.getImage().getScaledInstance(
+                  lblFoto.getWidth(),
+                  lblFoto.getHeight(),
+                  Image.SCALE_SMOOTH
+         );
 
-seletor.setFileFilter(
-    new FileNameExtensionFilter("Imagens", "jpg", "jpeg", "png")
-);
-
-if (seletor.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-
-    fotoSelecionada = seletor.getSelectedFile();
-
-    ImageIcon icone = new ImageIcon(
-        fotoSelecionada.getAbsolutePath()
-    );
-
-    Image imagem = icone.getImage().getScaledInstance(
-        lblFoto.getWidth(),
-        lblFoto.getHeight(),
-        Image.SCALE_SMOOTH
-    );
-
-    lblFoto.setText("");
-    lblFoto.setIcon(new ImageIcon(imagem));
-
-    btnFoto.setText("Alterar foto");
-}
+              lblFoto.setText("");
+              lblFoto.setIcon(new ImageIcon(imagem));
+          
+              btnFoto.setText("Alterar foto");
+          }
     }//GEN-LAST:event_btnFotoActionPerformed
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
@@ -242,7 +246,13 @@ if (seletor.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
     }//GEN-LAST:event_especieAnimalActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        
+       
+         areaAdministrativa tela = new areaAdministrativa();
+
+         tela.setVisible(true);
+
+         this.dispose();
+         
     }//GEN-LAST:event_btnSairActionPerformed
 
     /**
