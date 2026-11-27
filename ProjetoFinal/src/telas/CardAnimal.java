@@ -9,6 +9,7 @@ import model.Animal;
 import java.awt.Image;
 import java.net.URL;
 import javax.swing.ImageIcon;
+import java.io.File;
 
 import model.Usuario;
 import service.AdocaoService;
@@ -65,14 +66,14 @@ public class CardAnimal extends javax.swing.JPanel {
             return;
         }
 
-        URL url = getClass().getResource(caminho);
+        File arquivo = new File(caminho);
 
-        if (url == null) {
+        if (!arquivo.exists()) {
             System.out.println("Foto não encontrada: " + caminho);
             return;
         }
 
-        ImageIcon original = new ImageIcon(url);
+        ImageIcon original = new ImageIcon(caminho);
 
         Image imagem = original.getImage().getScaledInstance(
                 190, 115, Image.SCALE_SMOOTH

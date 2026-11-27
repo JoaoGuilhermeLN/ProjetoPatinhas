@@ -49,7 +49,7 @@ public class TelaAdocaoTeste extends javax.swing.JFrame {
 
         AnimalDAO dao = new AnimalDAO();
 
-        ArrayList<Animal> animais = dao.consultarTodos();
+        ArrayList<Animal> animais = dao.consultarDisponiveis();
 
         painelAnimais.removeAll();
 

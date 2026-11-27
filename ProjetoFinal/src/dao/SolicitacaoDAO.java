@@ -225,12 +225,17 @@ public class SolicitacaoDAO {
 
         String sqlAdocao = "INSERT INTO Adocao "
                 + "(idAnimal, idCliente, dataAdocao) "
-                + "VALUES ( ?, ?, CURDATE ())";
+                + "VALUES ( ?, ?, CURDATE())";
 
         String sqlAtualiza = "UPDATE Solicitacao "
                 + "SET Status = 'Aprovada' "
-                + "WHERE idSolicitacao = ?"
+                + "WHERE idSolicitacao = ? "
                 + "AND Status = 'Pendente' ";
+
+        String sqlAnimal = "UPDATE Animal "
+                + "SET status = 'Adotado' "
+                + "WHERE idAnimal = ? "
+                + "AND status = 'Disponivel'";
 
         try {
 
@@ -260,6 +265,17 @@ public class SolicitacaoDAO {
 
                 conexao.rollback();
                 return false;
+            }
+            
+            try (PreparedStatement stmtAnimal
+                    = conexao.prepareStatement(sqlAnimal)) {
+
+                stmtAnimal.setInt(1, idAnimal);
+
+                if (stmtAnimal.executeUpdate() == 0) {
+                    conexao.rollback();
+                    return false;
+                }
             }
 
             PreparedStatement stmtAdocao
@@ -310,16 +326,16 @@ public class SolicitacaoDAO {
             } catch (SQLException e) {
                 System.out.println("Erro ao restaurar conexão: "
                         + e.getMessage());
-            } 
+            }
         }
     }
 
-    public boolean recusarSolicitacao (int idSolicitacao ) {
+    public boolean recusarSolicitacao(int idSolicitacao) {
 
         String sql = "UPDATE Solicitacao "
-            +"SET Status = 'Recusada' "
-            +"WHERE idSolicitacao = ? "
-            +"AND Status = 'Pendente' ";
+                + "SET Status = 'Recusada' "
+                + "WHERE idSolicitacao = ? "
+                + "AND Status = 'Pendente' ";
 
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
@@ -327,11 +343,11 @@ public class SolicitacaoDAO {
             int linhasAfetadas = stmt.executeUpdate();
             return linhasAfetadas > 0;
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
 
-            System.out.println("Erro ao recusar solicitação!" +e.getMessage());
+            System.out.println("Erro ao recusar solicitação!" + e.getMessage());
             return false;
         }
-        
+
     }
 }
