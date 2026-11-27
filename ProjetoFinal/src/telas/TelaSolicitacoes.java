@@ -4,6 +4,12 @@
  */
 package telas;
 
+import dao.SolicitacaoDAO;
+import model.Solicitacao;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Alex
@@ -32,6 +38,8 @@ public class TelaSolicitacoes extends javax.swing.JFrame {
         lblRecusadas.setFont(new java.awt.Font("Artifakt Element Black", 0, 32));
         lblRecusadas.setForeground(java.awt.Color.WHITE);
         lblRecusadas.setOpaque(false);
+
+        carregarSolicitacao();
     }
 
     /**
@@ -140,17 +148,100 @@ public class TelaSolicitacoes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVisualizarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        // TODO add your handling code here:
+        
+        areaAdministrativa tela = new areaAdministrativa();
+
+        tela.setVisible(true);
+    
+        this.dispose()
+            
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnAprovarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAprovarActionPerformed
-        // TODO add your handling code here:
+
+        int linha = tblSolicitacoes.getSelectedRow();
+
+        if (linha == -1){
+            JOptionPane.showMessageDialog(this, "Selecione uma solicitação para aprovar. ");
+            return;
+        }
+
+        int idSolicitacao = (int) tblSolicitacoes.getValueAt(linha, 0);
+
+        int resposta = JOptionPane.showConfirmDialog(this, "Deseja aprovar essa solicitacao? ",
+                                                    "Confirmar",
+                                                    JOptionPane.YES_NO_OPTION);
+        if (resposta == JOptionPane.YES_OPTION){
+
+            SolicitacaoDAO dao = new SolicitacaoDAO ();
+
+            if(dao.aprovarSolicitacao(idSolicitacao)){
+
+                JOptionPane.showMessageDialog(this, "Solicitação aprovada! ");
+                carregarSolicitacao();
+            }else{
+
+                JOptionPane.showMessageDialog(this, "Não foi possível aprovar. ");
+            }
+            
+        }
+        
+        
+        
     }//GEN-LAST:event_btnAprovarActionPerformed
 
     private void btnRecusarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecusarActionPerformed
-        // TODO add your handling code here:
+
+        int linha = tblSolicitacoes.getSelectedRow();
+
+        if(linha == -1){
+            JOptionPane.showMessageDialog(this, "Selecione uma solicitação para recusar. ");
+            return;
+        }
+
+        int idSolicitacao = (int) tblSolicitacoes.getValueAt(linha, 0);
+
+        int resposta = JOptionPane.showConfirmDialog(this, "Deseja recusar essa solicitação? ",
+                                                    "Confirmar",
+                                                    JOptionPane.YES_NO_OPTION);
+        if(resposta == JOptionPane.YES_OPTION){
+
+            SolicitacaoDAO dao = new SolicitacaoDAO();
+
+            if(dao.recusarSolicitacao(idSolicitacao)){
+
+                JOptionPane.showMessageDialog(this, "Solicitação recusada!");
+                carregarSolicitacao();
+                
+            }else{
+                JOptionPane.showMessageDialog(this, "Não foi possível recusar.");
+            }
+            
+        }
+        
     }//GEN-LAST:event_btnRecusarActionPerformed
 
+    public void carregarSolicitacao(){
+
+        SolicitacaoDAO dao = new SolicitacaoDAO();
+
+        ArrayList<Solicitacao> lista = dao.consultarTodos();
+
+        DefaultTableModel modelo = (DefaultTableModel) tblSolicitacoes.getModel();
+
+        modelo.setRowCount(0);
+
+        for(Solicitacao s: lista){
+            modelo.addRow(new Object[]{
+            s.getIdSolicitacao(),
+            s.getIdCliente(),
+            s.getIdAnimal(),
+            s.getDataSolicitacao(),
+            s.getStatus()
+            }); 
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
