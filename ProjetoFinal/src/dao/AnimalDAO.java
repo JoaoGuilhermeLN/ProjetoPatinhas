@@ -18,7 +18,7 @@ public class AnimalDAO {
     //inserir os dados de um animal no mysql
     public void inserir(Animal a) {
         try {
-            String sql = "insert into animal (nome, especie, raca, idadeAproximada, sexo, porte, status) values (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "insert into animal (nome, especie, raca, idadeAproximada, sexo, porte, status, foto) values (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = conexao.prepareStatement(sql);
 
             ps.setString(1, a.getNomeAnimal());
@@ -28,6 +28,7 @@ public class AnimalDAO {
             ps.setString(5, a.getSexo());
             ps.setString(6, a.getPorte());
             ps.setString(7, a.getStatus());
+            ps.setString(8, a.getFoto());
 
             ps.executeUpdate();
 
@@ -61,6 +62,7 @@ public class AnimalDAO {
                 );
 
                 a.setStatus(rs.getString("status"));
+                a.setFoto(rs.getString("foto"));
 
                 animais.add(a);
             }
@@ -103,6 +105,7 @@ public class AnimalDAO {
                 );
 
                 animal.setStatus(rs.getString("status"));
+                animal.setFoto(rs.getString("foto"));
             }
 
             rs.close();
@@ -211,6 +214,7 @@ public class AnimalDAO {
                 );
 
                 a.setStatus(rs.getString("status"));
+                a.setFoto(rs.getString("foto"));
 
                 animais.add(a);
             }
