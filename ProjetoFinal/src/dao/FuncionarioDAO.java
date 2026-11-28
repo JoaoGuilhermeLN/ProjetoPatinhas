@@ -1,4 +1,3 @@
-
 package dao;
 
 import conexao.Conexao;
@@ -78,6 +77,45 @@ public class FuncionarioDAO {
             }
         }
     }
+    //sobrecarga pra cadastroService
+    public int inserirFuncionario(Funcionario funcionario, Connection conexao)
+            throws SQLException {
+
+        String sql = "INSERT INTO Funcionario "
+                + "(idPessoa, cargo, matricula) VALUES (?, ?, ?)";
+
+        EnderecoDAO enderecoDAO = new EnderecoDAO(conexao);
+
+        int idEndereco = enderecoDAO.inserirEndereco(
+                funcionario.getEndereco());
+
+        if (idEndereco <= 0) {
+            throw new SQLException("Erro ao cadastrar endereço.");
+        }
+
+        funcionario.getEndereco().setIdEndereco(idEndereco);
+
+        PessoaDAO pessoaDAO = new PessoaDAO(conexao);
+
+        int idPessoa = pessoaDAO.inserirPessoa(funcionario);
+
+        if (idPessoa <= 0) {
+            throw new SQLException("Erro ao cadastrar pessoa.");
+        }
+
+        try (PreparedStatement ps = conexao.prepareStatement(sql)) {
+
+            ps.setInt(1, idPessoa);
+            ps.setString(2, funcionario.getCargo());
+            ps.setInt(3, funcionario.getMatricula());
+
+            if (ps.executeUpdate() == 0) {
+                throw new SQLException("Funcionário não cadastrado!");
+            }
+        }
+
+        return idPessoa;
+    }
 
     // CONSULTAR TODOS OS FUNCIONÁRIOS
     public ArrayList<Funcionario> consultarTodos() {
@@ -91,8 +129,7 @@ public class FuncionarioDAO {
             return funcionarios;
         }
 
-        try (PreparedStatement ps = conexao.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+        try (PreparedStatement ps = conexao.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
 

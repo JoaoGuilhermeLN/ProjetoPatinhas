@@ -1,6 +1,8 @@
 package service;
 
 import conexao.Conexao;
+import dao.FuncionarioDAO;
+import model.Funcionario;
 import dao.ClienteDAO;
 import dao.UsuarioDAO;
 import model.Cliente;
@@ -12,6 +14,7 @@ public class CadastroService {
 
     private ClienteDAO clienteDAO = new ClienteDAO();
     private UsuarioDAO usuarioDAO = new UsuarioDAO();
+    private FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 
     public boolean cadastrarCliente(Cliente cliente, String login, String senha) {
 
@@ -64,4 +67,60 @@ public class CadastroService {
             return false;
         }
     }
+
+    public boolean cadastrarFuncionario(Funcionario funcionario,
+            String login, String senha) {
+
+        if (funcionario == null || login == null || senha == null
+                || login.trim().isEmpty() || senha.trim().isEmpty()) {
+            return false;
+        }
+
+        new Conexao();
+
+        try (Connection conexao = Conexao.getConexao()) {
+
+            if (conexao == null) {
+                return false;
+            }
+
+            conexao.setAutoCommit(false);
+
+            try {
+
+                int idPessoa = funcionarioDAO.inserirFuncionario(
+                        funcionario, conexao);
+
+                Usuario usuario = new Usuario(
+                        0,
+                        idPessoa,
+                        login,
+                        senha,
+                        "FUNCIONARIO"
+                );
+
+                usuarioDAO.inserirUsuario(usuario, conexao);
+
+                conexao.commit();
+
+                return true;
+
+            } catch (SQLException | RuntimeException e) {
+
+                conexao.rollback();
+
+                System.out.println("Erro no cadastro de funcionário: "
+                        + e.getMessage());
+
+                return false;
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println("Erro na conexao: " + e.getMessage());
+
+            return false;
+        }
+    }
+
 }
