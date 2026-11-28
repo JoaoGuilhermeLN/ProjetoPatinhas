@@ -137,8 +137,25 @@ public class CardAnimal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdotarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdotarActionPerformed
-        if (usuario == null || animal == null) {
-            JOptionPane.showMessageDialog(this, "Faça login para solicitar uma adoção!");
+        if (usuario == null) {
+
+            JOptionPane.showMessageDialog(this,
+                    "Faça login para solicitar uma adoção!");
+
+            TelaLoginUm tela = new TelaLoginUm();
+            tela.setVisible(true);
+
+            java.awt.Window janela
+                    = javax.swing.SwingUtilities.getWindowAncestor(this);
+
+            if (janela != null) {
+                janela.dispose();
+            }
+
+            return;
+        }
+
+        if (animal == null) {
             return;
         }
 
@@ -147,11 +164,36 @@ public class CardAnimal extends javax.swing.JPanel {
         boolean sucesso = service.solicitarAdocao(usuario, animal.getIdAnimal());
 
         if (sucesso) {
-            JOptionPane.showMessageDialog(this, "Solicitação enviada com sucesso!");
+
             btnAdotar.setText("Solicitação enviada");
             btnAdotar.setEnabled(false);
+
+            int resposta = JOptionPane.showConfirmDialog(
+                    this,
+                    "Solicitação enviada com sucesso!\n"
+                    + "Deseja acompanhar o status da sua solicitação?",
+                    "Solicitação de adoção",
+                    JOptionPane.YES_NO_OPTION
+            );
+
+            if (resposta == JOptionPane.YES_OPTION) {
+
+                TelaMinhasSolicitacoes tela
+                        = new TelaMinhasSolicitacoes(usuario);
+
+                tela.setVisible(true);
+
+                java.awt.Window janela
+                        = javax.swing.SwingUtilities.getWindowAncestor(this);
+
+                if (janela != null) {
+                    janela.dispose();
+                }
+            }
+
         } else {
-            JOptionPane.showMessageDialog(this, "Não foi possível solicitar a adoção!");
+            JOptionPane.showMessageDialog(this,
+                    "Não foi possível solicitar a adoção!");
         }
     }//GEN-LAST:event_btnAdotarActionPerformed
 

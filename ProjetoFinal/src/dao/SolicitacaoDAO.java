@@ -237,6 +237,12 @@ public class SolicitacaoDAO {
                 + "WHERE idAnimal = ? "
                 + "AND status = 'Disponivel'";
 
+        String sqlRecusarDemais = "UPDATE Solicitacao "
+                + "SET status = 'Recusada' "
+                + "WHERE idAnimal = ? "
+                + "AND idSolicitacao <> ? "
+                + "AND status = 'Pendente'";
+
         try {
 
             conexao.setAutoCommit(false);
@@ -266,7 +272,7 @@ public class SolicitacaoDAO {
                 conexao.rollback();
                 return false;
             }
-            
+
             try (PreparedStatement stmtAnimal
                     = conexao.prepareStatement(sqlAnimal)) {
 
@@ -302,6 +308,14 @@ public class SolicitacaoDAO {
                 conexao.rollback();
                 return false;
             }
+
+            PreparedStatement stmtRecusar = conexao.prepareStatement(sqlRecusarDemais);
+
+            stmtRecusar.setInt(1, idAnimal);
+            stmtRecusar.setInt(2, idSolicitacao);
+
+            stmtRecusar.executeUpdate();
+            stmtRecusar.close();
 
             conexao.commit();
             return true;

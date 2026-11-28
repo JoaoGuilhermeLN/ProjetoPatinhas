@@ -3,31 +3,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package telas;
-
+import javax.swing.JOptionPane;
 /**
  *
  * @author Aluno
  */
-
 import model.Usuario;
 
+
 public class telaAdocao extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(telaAdocao.class.getName());
 
     /**
      * Creates new form telaAdocao
      */
-    
     private Usuario usuario;
-    
+
     public telaAdocao() {
         initComponents();
     }
+
     public telaAdocao(Usuario usuario) {
-    this();
-    this.usuario = usuario;
-}
+        this();
+        this.usuario = usuario;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,6 +39,7 @@ public class telaAdocao extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        btnSolicitacoes = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,6 +51,15 @@ public class telaAdocao extends javax.swing.JFrame {
         jButton1.setText("Clique Aqui");
         jButton1.addActionListener(this::jButton1ActionPerformed);
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 420, 120, 50));
+
+        btnSolicitacoes.setBackground(new java.awt.Color(233, 233, 247));
+        btnSolicitacoes.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        btnSolicitacoes.setForeground(new java.awt.Color(51, 0, 102));
+        btnSolicitacoes.setText("Minhas Solicitações");
+        btnSolicitacoes.setBorderPainted(false);
+        btnSolicitacoes.setFocusPainted(false);
+        btnSolicitacoes.addActionListener(this::btnSolicitacoesActionPerformed);
+        getContentPane().add(btnSolicitacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 80, 230, 60));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/Patinhas animais.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -63,32 +73,54 @@ public class telaAdocao extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnSolicitacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitacoesActionPerformed
+
+        if (usuario == null) {
+
+            JOptionPane.showMessageDialog(this,
+                    "Faça login para visualizar suas solicitações!");
+
+            TelaLoginUm tela = new TelaLoginUm();
+            tela.setVisible(true);
+
+            this.dispose();
+            return;
+        }
+
+        TelaMinhasSolicitacoes tela = new TelaMinhasSolicitacoes(usuario);
+
+        tela.setVisible(true);
+
+        this.dispose();   
+    }//GEN-LAST:event_btnSolicitacoesActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+     */
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new telaAdocao().setVisible(true));
+    } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+        logger.log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(() -> new telaAdocao().setVisible(true));
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSolicitacoes;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

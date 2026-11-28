@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import dao.AnimalDAO;
 import model.Animal;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 import model.Usuario;
 
@@ -19,12 +20,16 @@ public class TelaAdocaoTeste extends javax.swing.JFrame {
     /**
      * Creates new form TelaAdocaoTeste
      */
+    
+    private Usuario usuario;
+    
     public TelaAdocaoTeste() {
         this(null);
     }
 
     public TelaAdocaoTeste(Usuario usuario) {
         initComponents();
+        this.usuario = usuario;
 
         Dimension tela = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -34,7 +39,7 @@ public class TelaAdocaoTeste extends javax.swing.JFrame {
         setSize(largura, altura);
         setLocationRelativeTo(null);
 
-        // Organizar os cartões em três colunas
+        // Organizar os cartões em 5 colunas
         painelAnimais.setLayout(
                 new java.awt.GridLayout(0, 5, 15, 15)
         );
@@ -72,6 +77,7 @@ public class TelaAdocaoTeste extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnSolicitacoes = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         scrollAnimais = new javax.swing.JScrollPane();
         painelAnimais = new javax.swing.JPanel();
@@ -80,6 +86,15 @@ public class TelaAdocaoTeste extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1519, 803));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnSolicitacoes.setBackground(new java.awt.Color(233, 233, 247));
+        btnSolicitacoes.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        btnSolicitacoes.setForeground(new java.awt.Color(51, 0, 102));
+        btnSolicitacoes.setText("Minhas Solicitações");
+        btnSolicitacoes.setBorderPainted(false);
+        btnSolicitacoes.setFocusPainted(false);
+        btnSolicitacoes.addActionListener(this::btnSolicitacoesActionPerformed);
+        getContentPane().add(btnSolicitacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 80, 230, 60));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -98,6 +113,27 @@ public class TelaAdocaoTeste extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSolicitacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitacoesActionPerformed
+
+        if (usuario == null) {
+
+            JOptionPane.showMessageDialog(this,
+                "Faça login para visualizar suas solicitações!");
+
+            TelaLoginUm tela = new TelaLoginUm();
+            tela.setVisible(true);
+
+            this.dispose();
+            return;
+        }
+
+        TelaMinhasSolicitacoes tela = new TelaMinhasSolicitacoes(usuario);
+
+        tela.setVisible(true);
+
+        this.dispose();
+    }//GEN-LAST:event_btnSolicitacoesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,6 +161,7 @@ public class TelaAdocaoTeste extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSolicitacoes;
     private javax.swing.JLabel fundoPatinhas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel painelAnimais;

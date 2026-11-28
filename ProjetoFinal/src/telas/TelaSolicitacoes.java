@@ -62,7 +62,6 @@ public class TelaSolicitacoes extends javax.swing.JFrame {
         btnRecusadas = new javax.swing.JButton();
         btnAprovar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
-        btnVisualizar = new javax.swing.JButton();
         btnRecusar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSolicitacoes = new javax.swing.JTable();
@@ -115,13 +114,6 @@ public class TelaSolicitacoes extends javax.swing.JFrame {
         btnVoltar.addActionListener(this::btnVoltarActionPerformed);
         getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 660, 160, 70));
 
-        btnVisualizar.setBackground(new java.awt.Color(233, 221, 245));
-        btnVisualizar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnVisualizar.setForeground(new java.awt.Color(0, 0, 0));
-        btnVisualizar.setText("Visualizar");
-        btnVisualizar.addActionListener(this::btnVisualizarActionPerformed);
-        getContentPane().add(btnVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 660, 160, 70));
-
         btnRecusar.setBackground(new java.awt.Color(233, 221, 245));
         btnRecusar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         btnRecusar.setForeground(new java.awt.Color(0, 0, 0));
@@ -166,10 +158,6 @@ public class TelaSolicitacoes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVisualizarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
 
@@ -341,7 +329,6 @@ public class TelaSolicitacoes extends javax.swing.JFrame {
     private javax.swing.JButton btnPendentes;
     private javax.swing.JButton btnRecusadas;
     private javax.swing.JButton btnRecusar;
-    private javax.swing.JButton btnVisualizar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel fundo;
     private javax.swing.JScrollPane jScrollPane1;
